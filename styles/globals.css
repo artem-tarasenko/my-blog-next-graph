@@ -29,3 +29,17 @@ html, body, #__next {
         @apply text-gray-600;
     }
   }
+
+  .snippet-tag:after {
+    content: "\2022";
+    padding: 0 10px;
+  }
+
+  .tag.selected {
+    background-color: #e7e7e7;
+  }
+
+
+  .tag.selected:focus, .tag.selected:active {
+    outline: 0;
+  }
