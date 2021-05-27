@@ -2,7 +2,10 @@ import React from "react";
 import { ApolloClient, InMemoryCache, gql } from '@apollo/client';
 import BlogPost from "../../components/BlogPost.jsx";
 import Blog from "../../components/blog.jsx";
+import Layout from '../../components/Layout.jsx';
 
+//! REMOVE THIS LINE LATER
+process.env['NODE_TLS_REJECT_UNAUTHORIZED'] = 0;
 
 // #########################################################################################
 // #########################################################################################
@@ -64,7 +67,11 @@ export async function getStaticPaths() {
 // #########################################################################################
 // #########################################################################################
 function Post( {post} ) {
-  return  <BlogPost post={post} />
+  return  <>
+    <Layout>
+      <BlogPost post={post} />
+    </Layout>
+  </>
 }
 
 export default Post

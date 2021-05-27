@@ -43,3 +43,8 @@ html, body, #__next {
   .tag.selected:focus, .tag.selected:active {
     outline: 0;
   }
+
+  button[disabled] {
+    opacity: 0.2;
+    border: 0;
+  }

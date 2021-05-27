@@ -21,6 +21,7 @@ function BlogPost( {post} ) {
                             {parse(content.html)}
                         </div>
                     </section>
+                    <Footer />
                 </div>
             </React.Fragment>
 

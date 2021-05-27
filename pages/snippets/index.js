@@ -1,9 +1,10 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useReducer, useState } from "react";
 import { ApolloClient, InMemoryCache, gql } from '@apollo/client';
-
 import Layout from '../../components/Layout.jsx';
-process.env.NODE_TLS_REJECT_UNAUTHORIZED = '0'
 
+
+//! REMOVE THIS LINE LATER
+process.env['NODE_TLS_REJECT_UNAUTHORIZED'] = 0;
 
 // ###############################################################
 // ###############################################################
@@ -34,224 +35,154 @@ export async function getStaticProps() {
     snippets.forEach(snippet => snippet.tags.forEach(tag => !tagsArray.includes(tag) && tagsArray.push(tag)));
 
     let newArr = [];
-    tagsArray.forEach(item => newArr.push({tag: item, state: true}));
+    tagsArray.forEach(item => newArr.push({tag: item, isActive: true, isSelected: false}));
+    const initialContent = { snippets: snippets, filter: newArr, allTags: tagsArray, defaultFilter: newArr }
 
-    return { props: {snippets: snippets, allTags: newArr}};
+    return { props: initialContent};
   }
 
 
+const ACTIONS = {
+    ADD_FILTER: 'add',
+    REMOVE_FILTER: 'remove',
+    TEST: 'test',
+    RESET: 'reset'
+  }
+
+function reducer(content, action) {
+    const initState = content.allSnippets; //all 8 items
+    console.log("-- Reducer, CONTENT CURRENT --", content.snippets)
+    
+    switch(action.type) {
+        case ACTIONS.ADD_FILTER: {
+            console.log("-- Reducer, ADD --")
+            const updatedFilter = content.filter.map( item => item.tag === action.payload.tag ? {...item, isSelected: true} : {...item});
+            const updatedSnippets = filterSnippets(updatedFilter);
+            console.log("Adding to current state: ", updatedSnippets.length)
+
+            return {...content, filter: updatedFilter, snippets: updatedSnippets}
+        }
+
+        case ACTIONS.REMOVE_FILTER: {
+            console.log("-- Reducer, REMOVE --")
+            const updatedFilter = content.filter.map( item => item.tag === action.payload.tag ? {...item, isSelected: false} : {...item});
+            const activeTags = updatedFilter.reduce( (arr, item) => item.isSelected ? [...arr, item.tag] : arr, [])
+            if(activeTags.length > 0) {
+                // -1 filter
+                const updatedSnippets = filterSnippets(updatedFilter);
+
+                return {...content, filter: updatedFilter, snippets: updatedSnippets}
+            } else {
+                //set defauld
+                console.log("Resetting filter to default values")
+                return {...content, snippets: initState, filter: content.defaultFilter}
+            }
+        }
+
+        case ACTIONS.TEST: {
+            const temp = filterSnippets();
+            return {...content, snippets: temp}
+        }
+
+        case ACTIONS.RESET: {
+            return {...content, snippets: initState, filter: content.defaultFilter}
+        }
+    }
+
+    function filterSnippets(filters) {
+        const activeTags = filters.reduce( (arr, item) => item.isSelected ? [...arr, item.tag] : arr, [])
+        console.log("filterSnippets -> tags", activeTags)
 
 
+        const newSnippets = initState.reduce( (arr, snippet) => { 
+            activeTags.forEach( tag => {
+                if(snippet.tags.includes(tag) && (!arr.some(item => item.slug === snippet.slug))) {
+                    arr.push(snippet)
+                }
+            })
+            return arr;
+        }, [])
+
+        
+        console.log("filterSnippets -> res arr", newSnippets)
+
+        return newSnippets;
+    }
+}
+
+// ###############################################################npm
 // ###############################################################
-// ###############################################################
-function Index( {snippets, allTags} ) {
-    const [snippetsArray, setSnippetsArray] = useState(snippets);
-    const [filter, setFilter] = useState(allTags)
-    console.log("SNIPPETS PROPS DATA > ", snippets);
-    console.log("TAGS PROPS DATA > ", filter);
+//! AllTags \ allSnippets - probably not needed...
 
-    function sortByTag(e) {
-        console.log("###########################################################################");
-        console.log("###########################################################################");
-        console.group('Init sorting');
-            console.log("On Click # Snippets pressed", e.target.value);
-            console.log("On Click # Snippets arr", e.target.classList);
-            console.log("On click # event", e.target);
-        console.groupEnd();
+function Index( {snippets, filter, allTags, defaultFilter} ) {
+    const [content, dispatch] = useReducer(reducer, {snippets, filter, allTags, defaultFilter, allSnippets: [...snippets]})
 
-        let filterValue = [];
+    console.group('State');
+    const snipTitles = content.snippets.map(item => item.title)
+    console.log("Snippets: ", content.snippets.length, snipTitles);
+    console.log("Filter: ", content.filter);
+    console.groupEnd();
 
-
+    function handleFiltering(e) {
 
         if(e.target.classList.contains("selected")) {
-            //DEACTIVATING FILTER
-            console.group('Deactivating...');
-            e.target.classList.remove("selected");
-            //test whether filter had 1 tag or more
-            if(filter.length = 1) {
-                //resetting filter to default
-                console.group('Deselecting tag');
-                console.log("Removing last filter (filter length):", filter.length);
-                setFilter(tags);
-                console.log("Resetting default filter (length):", filter.length);
-                console.groupEnd();
-            } else {
-                //remove tag from filter
-                console.log("At least 2 filters, removing selected (init filterss, remove tag):", filter, e.target.value);
-                
-                setFilter(prevValue => prevValue.filter( tag != e.target.value))
-                console.log("New filter value:", filter);
-                console.groupEnd();
-            }
-
-        } else if(!e.target.classList.contains("selected")) {
-            //ACTIVATING FILTER
-            console.group('Activating...');
-            e.target.classList.add("selected");
-
-            //test whether filter was default or not
-            if(filter === tags) {
-                console.log("Filters are equal (tags, filter):", tags.length, filter.length);
-                //remove all filter data if filter=tags, add 1 selected
-                //rerender snippets
-                console.log("Updating filter, should be 1 item only");
-                setFilter([e.target.value]);
-                console.log("New filter value:", filter);
-                console.groupEnd();
-
-            } else {
-                console.log("Filters are NOT equal (tags, filter):", tags.length, filter.length);
-                
-                setFilter(prevValue => [...prevValue, e.target.value])
-                console.log("New filter value:", filter);
-                console.groupEnd();
-            }
-            //reset filter if 1 only was selected
-            //remove selected if 2+ were selected
-            //rerender snippets
-        }
-        
-
-        
-
-        // const filteredArray = snippetsArray.filter(item => item.tags.includes(e.target.value));
-        // console.log("On click # filtered array of snippets: ", filteredArray);
-        // setSnippetsArray(filteredArray);
+            console.log("Disabling filter..");
+            dispatch({type: ACTIONS.REMOVE_FILTER, payload: {tag: e.target.value}});
+            return
+        } else {
+            console.log("Adding new filter")
+            dispatch({type: ACTIONS.ADD_FILTER, payload: {tag: e.target.value}})
+            return
+        };
     }
-
-    function initTags() {
-        //collecting all possible tags for CURRENT snippets to pass them as default value
-        //allTags - all possible from SSR stage
-        let sortedTags = []
-        snippetsArray.forEach(snippet => snippet.tags.forEach(tag => !sortedTags.includes(tag) && sortedTags.push(tag)));
-        // console.log("ARR", tagsArray.map(tag => { return {tag: tag, isActive: true}}))
-
-        let newSortedArr = [];
-        sortedTags.forEach( item => newSortedArr.push({tag: item, state: true}))
-        setFilter(newSortedArr)
-    }
-
-    function sortSnippets(e) {
-
-
-        console.log("click", e.target);
-        //const targetTagStatus = ((filter.find(item => item.tag === e.target.value).state));
-
-        const updatedFilter = filter.map( obj => obj.tag === e.target.value ? ({...obj, state: !obj.state}) : obj);
-        console.log(updatedFilter);
-        initTags();
-        setFilter(updatedFilter);
-        
-    }
-    
+   
     return  <React.Fragment>
                 <Layout >
                     <React.Fragment>
-                        <div className="flex flex-column mb-6 flex flex-col">
-                            <div className="px-64">
-                                <p>Nay whatever way delicate passed of avoid might sing whatever all window concealed. Dissuade whole many age mistress late sentiments held doubt scarcely against invitation answer enable. Visited engage steepest shall beyond subject civilly performed concluded offence farther.</p>
-                                <div className="tags-filter flex flex-row mt-6">
-                                    <button className="tag px-2 py-1 border mr-2" >TEST</button>
-                                    {/* <button className="tag px-2 py-1 border mr-2" onClick={sortSnippets} value={filter[prop]}> */}
-                                    {
-                                        filter.map( (obj, index) => {
-                                            if(obj.state) {
-                                                return <button key={index} className="tag px-2 py-1 border mr-2" 
-                                                                onClick={sortSnippets} 
-                                                                value={obj.tag}>
-                                                            {obj.tag}
-                                                        </button>
-                                            } else {
-                                                return <button key={index}  className="tag px-2 py-1 border mr-2 selected" 
-                                                                onClick={sortSnippets} 
-                                                                value={obj.tag}
-                                                                >
-                                                            {obj.tag}
-                                                        </button>
-                                            }
-                                        })
-                                    }
-                                </div>
-                            </div>
-                            <div className="pt-8 flex flex-row flex-wrap items-stretch">
-                                {/* {snippetsArray.map(snippet => {
-                                    let isActive = false;
-                                    //console.log("Snippet in MAP", snippet.title);
-                                    for(let tag of snippet.tags) {
-                                        
-                                        //console.log("FOR LOOP: (snippet, tag)", snippet.title, tag);
-                                        if(filter.includes(tag)) {
-                                            isActive= true;
-                                            console.groupCollapsed('ACTIVATING SNIPPET');
-                                            console.log("title", snippet.title);
-                                            console.log("tag", tag);
-                                            console.log("Filter on the moment", filter);
-                                            console.log("TAGS DEF", tags);
-                                            console.log("isActive?", isActive);
-                                            console.groupEnd();
-                                            
-                                            break;
-                                        }
-                                    }
-                                    
-                                    // isActive 
-                                    //     ? ( <>
-                                    //         <div className="p-2 flex-shring-0 w-1/4 flex">
-                                    //             <div className="bg-gray-200 p-3">
-                                    //                 <h2 className="pb-2 text-lg leading-5"><a href={`snippets/${snippet.slug}`}>{snippet.title}</a></h2>
-                                    //                 <p className="text-sm leading-4">{snippet.excerpt}</p>
-                                    //                 <span className="snippet-tags flex flex-row pt-2 flex-wrap">
-                                    //                     {snippet.tags.map(tag => <p className="snippet-tag text-sm flex-shrink-0">{tag}</p>)}
-                                    //                 </span>
-                                    //             </div>
-                                    //         </div>
-                                    //     </>)
-                                    //     : null
-
-                                    if(isActive) {
-                                        
-                                        return <>
-                                             <div className="p-2 flex-shring-0 w-1/4 flex">
-                                                 <div className="bg-gray-200 p-3">
-                                                     <h2 className="pb-2 text-lg leading-5"><a href={`snippets/${snippet.slug}`}>{snippet.title}</a></h2>
-                                                     <p className="text-sm leading-4">{snippet.excerpt}</p>
-                                                     <span className="snippet-tags flex flex-row pt-2 flex-wrap">
-                                                         {snippet.tags.map(tag => <p className="snippet-tag text-sm flex-shrink-0">{tag}</p>)}
-                                                     </span>
-                                                 </div>
-                                             </div>
-                                         </>
-                                    } else {
-                                        return null
-                                    }
-
-
-                                })} */}
-
-
-
+                    <div className="flex flex-column mb-6 flex flex-col">
+                        <div className="px-64">
+                            <p>Nay whatever way delicate passed of avoid might sing whatever all window concealed. Dissuade whole many age mistress late sentiments held doubt scarcely against invitation answer enable. Visited engage steepest shall beyond subject civilly performed concluded offence farther.</p>
+                            <div className="tags-filter flex flex-row mt-6">
+                                <button className="tag px-2 py-1 border mr-2" onClick={ () => dispatch({type: ACTIONS.RESET})} >RESET</button>
+                                <button className="tag px-2 py-1 border" onClick={ () => dispatch({type: ACTIONS.TEST})} >TEST</button>
+                                <p className="mx-5"> --- </p>
+                                {/* <p>Filters</p> */}
+                                {/* <button className="tag px-2 py-1 border mr-2" onClick={sortSnippets} value={filter[prop]}> */}
                                 {
-
-
-                                    // <>
-                                    // <div className="p-2 flex-shring-0 w-1/4 flex">
-                                    //     <div className="bg-gray-200 p-3">
-                                    //         <h2 className="pb-2 text-lg leading-5"><a href={`snippets/${snippet.slug}`}>{snippet.title}</a></h2>
-                                    //         <p className="text-sm leading-4">{snippet.excerpt}</p>
-                                    //         <span className="snippet-tags flex flex-row pt-2 flex-wrap">
-                                    //             {snippet.tags.map(tag => <p className="snippet-tag text-sm flex-shrink-0">{tag}</p>)}
-                                    //         </span>
-                                    //     </div>
-                                    // </div>
-                                    // </>
-                                    <p>Temp text</p>
+                                    content.filter && content.filter.map( (filter, index) => <button className={`tag px-2 py-1 border mr-2 ${filter.isSelected ? 'selected' : ''}`}
+                                        disabled={!filter.isActive} key={index} onClick={handleFiltering} value={filter.tag} >
+                                            {filter.tag}
+                                        </button>
+                                    )
                                 }
-
                             </div>
                         </div>
+                        <div className="pt-8 flex flex-row flex-wrap items-stretch">
+                            {/* <p>Snippet</p><p>Snippet</p><p>Snippet</p> */}
+                            {
+                                content.snippets && content.snippets.map( (snippet, index) => 
+                                    <Snippet snippet={snippet} key={index} tags={snippet.tags} />
+                                )
+                            }
+                        </div>
+                    </div>
                     </React.Fragment>
                 </Layout>
             </React.Fragment>
+}
+
+const Snippet = (props) => {
+    return <>
+        <div className="p-2 flex-shring-0 w-1/4 flex" >
+            <div className="bg-gray-200 p-3">
+                <h2 className="pb-2 text-lg leading-5"><a href={`snippets/${props.snippet.slug}`}>{props.snippet.title}</a></h2>
+                <p className="text-sm leading-4">{props.snippet.excerpt}</p>
+                <span className="snippet-tags flex flex-row pt-2 flex-wrap">
+                    {props.tags.map((tag, index) => <p key={index} className="snippet-tag text-sm flex-shrink-0">{tag}</p>)}
+                </span>
+            </div>
+        </div>
+    </>
 }
 
 export default Index;
