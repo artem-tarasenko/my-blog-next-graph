@@ -77,7 +77,7 @@ function reducer(content, action) {
                 console.log("Resetting filter to default values")
                 return {...content, snippets: initState, filter: content.defaultFilter}
             }
-        }
+        } 
 
         case ACTIONS.TEST: {
             const temp = filterSnippets();
