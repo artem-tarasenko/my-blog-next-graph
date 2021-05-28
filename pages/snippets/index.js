@@ -139,7 +139,7 @@ function Index( {snippets, filter, allTags, defaultFilter} ) {
     return  <React.Fragment>
                 <Layout >
                     <React.Fragment>
-                    <div className="flex flex-column mb-6 flex flex-col">
+                    <div className="flex flex-column my-6 flex-col">
                         <div className="px-64">
                             <p>Nay whatever way delicate passed of avoid might sing whatever all window concealed. Dissuade whole many age mistress late sentiments held doubt scarcely against invitation answer enable. Visited engage steepest shall beyond subject civilly performed concluded offence farther.</p>
                             <div className="tags-filter flex flex-row mt-6">

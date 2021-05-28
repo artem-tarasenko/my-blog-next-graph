@@ -1,8 +1,13 @@
-import React from "react";
+import React, {useEffect} from "react";
 import Header from "./Header.jsx";
 import Footer from "./Footer.jsx";
+import Prism from "Prismjs";
 
 function Layout(props) {
+
+    useEffect(() => {
+      Prism.highlightAll();
+    }, []);
 
 
     return  <React.Fragment>

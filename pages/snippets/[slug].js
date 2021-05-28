@@ -1,7 +1,9 @@
 import React from "react";
+import {useEffect} from "react";
 import { ApolloClient, InMemoryCache, gql } from '@apollo/client';
 import {Snippet, SnippetsSideMenu} from "../../components/Snippet.jsx";
 import Layout from '../../components/Layout.jsx';
+import Prism from "Prismjs"
 
 
 //! REMOVE THIS LINE LATER
@@ -23,9 +25,15 @@ const client = new ApolloClient({
 
 function Post( {data, menuData} ) {
 
+  useEffect(() => {
+      if (typeof window !== 'undefined') {
+          Prism.highlightAll();
+      }
+  }, []);
+
     return <>
       <Layout >
-        <div className="sidemenu">
+        <div className="sidemenu mt-16">
           <SnippetsSideMenu data={menuData} />
         </div>
         <Snippet snippet={data} />
@@ -81,6 +89,9 @@ export async function getStaticProps( {params} ) {
             content
             repo
             example
+            asd22 {
+              html
+            }
         }
     } 
   `;

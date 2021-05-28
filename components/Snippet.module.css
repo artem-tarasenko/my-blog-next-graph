@@ -1,0 +1,16 @@
+.postBody pre {
+    border-radius: 10px;
+    margin: 1rem 4rem;
+}
+
+.snippetTags {
+    /* background-color: rgb(209, 209, 209); */
+    border-radius: 5px;
+    padding: 5px 10px;
+    color: rgb(102, 102, 102);
+    border-top: 1px solid rgb(226, 226, 226);
+    border-left: 1px solid rgb(226, 226, 226);
+    border-right: 2px solid darkgray;
+    border-bottom: 2px solid darkgray;
+
+}

@@ -48,3 +48,12 @@ html, body, #__next {
     opacity: 0.2;
     border: 0;
   }
+
+  .sidemenu-title {
+    line-height: 2rem
+  }
+
+  .main-menu {
+    border-bottom: 1px solid #e0e0e0;
+    box-shadow: 0px -4px 11px grey;
+  }
