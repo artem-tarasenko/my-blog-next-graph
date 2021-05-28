@@ -143,11 +143,6 @@ function Index( {snippets, filter, allTags, defaultFilter} ) {
                         <div className="px-64">
                             <p>Nay whatever way delicate passed of avoid might sing whatever all window concealed. Dissuade whole many age mistress late sentiments held doubt scarcely against invitation answer enable. Visited engage steepest shall beyond subject civilly performed concluded offence farther.</p>
                             <div className="tags-filter flex flex-row mt-6">
-                                <button className="tag px-2 py-1 border mr-2" onClick={ () => dispatch({type: ACTIONS.RESET})} >RESET</button>
-                                <button className="tag px-2 py-1 border" onClick={ () => dispatch({type: ACTIONS.TEST})} >TEST</button>
-                                <p className="mx-5"> --- </p>
-                                {/* <p>Filters</p> */}
-                                {/* <button className="tag px-2 py-1 border mr-2" onClick={sortSnippets} value={filter[prop]}> */}
                                 {
                                     content.filter && content.filter.map( (filter, index) => <button className={`tag px-2 py-1 border mr-2 ${filter.isSelected ? 'selected' : ''}`}
                                         disabled={!filter.isActive} key={index} onClick={handleFiltering} value={filter.tag} >

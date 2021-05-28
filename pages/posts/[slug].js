@@ -68,9 +68,7 @@ export async function getStaticPaths() {
 // #########################################################################################
 function Post( {post} ) {
   return  <>
-    <Layout>
       <BlogPost post={post} />
-    </Layout>
   </>
 }
 

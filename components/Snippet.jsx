@@ -5,7 +5,7 @@ import ReactMarkdown from 'react-markdown'
 
 
 
-function Snippets( {snippet} ) {
+export function Snippet( {snippet} ) {
     // var result = md.render(snippet.content);
 
     // console.log(result)
@@ -27,4 +27,26 @@ function Snippets( {snippet} ) {
     </>
 }
 
-export default Snippets;
+export const SnippetsSideMenu = ( {data} ) => {
+    console.log("New menu => ", data);
+
+    function shortenString(string, limit){
+        return (string.length > limit) ? string.substr(0, limit).concat("...") : string;
+      }
+    
+    return <>
+        <div  >
+            {
+                data.map(item => {
+                    return <div className="my-5">
+                        <a href={`snippets/${item.slug}`}>{item.title}</a>
+                        {
+                            item.tags.map( tag => <p>{tag}</p>)
+                        }
+                        <p>{shortenString(item.excerpt, 100)}</p>
+                    </div>
+                })
+            }
+        </div>
+    </>
+}
