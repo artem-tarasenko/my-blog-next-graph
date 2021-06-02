@@ -8,16 +8,25 @@ import Blog from "../../components/blog.jsx";
 process.env['NODE_TLS_REJECT_UNAUTHORIZED'] = 0;
 
 
+
+
+
+
+export default function Post( {project} ) {
+  return  <BlogPost post={project} />
+}
+
+
+
+
 // #########################################################################################
+//         NEXT JS SSR
 // #########################################################################################
 const client = new ApolloClient({
   uri: process.env.REACT_APP_GRAPH_API,
   cache: new InMemoryCache()
 });
 
-
-// #########################################################################################
-// #########################################################################################
 export async function getStaticProps( {params} ) {
   //destructure response to data obj, response data from apollo will be in data prop.
   //so destructuring should be for 2 layers
@@ -41,13 +50,9 @@ export async function getStaticProps( {params} ) {
     {query: graphQuery, variables: {slug: params.slug}}
   );
 
-  console.log("PORFTOLIO SLUG DATA #### ", project);
-
   return { props: {project} }
 }
 
-// #########################################################################################
-// #########################################################################################
 // This function gets called at build time
 export async function getStaticPaths() {
   const { data: {projects} } = await client.query(
@@ -57,14 +62,3 @@ export async function getStaticPaths() {
   const paths = projects.map(item => ({params: {slug: item.slug}}));
   return { paths, fallback: false }
 }
-
-
-
-
-// #########################################################################################
-// #########################################################################################
-function Post( {project} ) {
-  return  <BlogPost post={project} />
-}
-
-export default Post
