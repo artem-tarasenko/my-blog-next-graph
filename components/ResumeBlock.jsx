@@ -93,9 +93,9 @@ export default function ResumeBlock({resume}) {
                 </div>
             </div>
             
-            <div className="studies my-4">
+            <div className={`studies my-4 ${styles.richText} ${styles.richTextPlain}`}>
                 <h2 className="border-b-2 border-gray-300 uppercase py-2">Soft Skills</h2>
-                <p className="mt-4">No soft skills... Only oldschool... Only hardcore...</p>
+                <p className="mt-4">{parse(resume.softSkills.html)}</p>
             </div>
         </div>
     </React.Fragment>

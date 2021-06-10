@@ -1,7 +1,7 @@
 import React from "react";
 //import '../styles/globals.css';
 
-import Blog from "../../components/Blog.jsx";
+import BlogLayout from "../../components/Blog/BlogLayout.jsx";
 import Layout from '../../components/Layout.jsx';
 // import { request, GraphQLClient, gql  } from 'graphql-request';
 import { ApolloClient, InMemoryCache, gql } from '@apollo/client';
@@ -51,8 +51,8 @@ function Index( props ) {
     //console.log("INITIAL POSTS DATA > ", posts);
     
     return  <React.Fragment>
-                <Layout >
-                    {posts.length > 1 ? <Blog source={posts} test={"testing string"} category={"posts"} /> : <p>Loading...</p>}
+                <Layout>
+                    {posts.length > 1 ? <BlogLayout source={posts} test={"testing string"} category={"posts"} /> : <p>Loading...</p>}
                 </Layout>
             </React.Fragment>
 }

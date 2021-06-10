@@ -24,10 +24,15 @@
       "static/chunks/webpack.js",
       "static/chunks/pages/_error.js"
     ],
-    "/resume": [
+    "/portfolio": [
       "static/chunks/main.js",
       "static/chunks/webpack.js",
-      "static/chunks/pages/resume.js"
+      "static/chunks/pages/portfolio.js"
+    ],
+    "/posts": [
+      "static/chunks/main.js",
+      "static/chunks/webpack.js",
+      "static/chunks/pages/posts.js"
     ]
   },
   "ampFirstPages": []

@@ -1,7 +1,9 @@
 import React from "react";
 import { ApolloClient, InMemoryCache, gql } from '@apollo/client';
-import BlogPost from "../../components/BlogPost.jsx";
-import Blog from "../../components/blog.jsx";
+
+import ProjectFull from "../../components/ProjectFull.jsx";
+import Header from "../../components/Header.jsx";
+import Footer from "../../components/Footer.jsx";
 
 
 //! REMOVE THIS LINE LATER
@@ -10,10 +12,15 @@ process.env['NODE_TLS_REJECT_UNAUTHORIZED'] = 0;
 
 
 
+export default function Post( {project, links} ) {
 
-
-export default function Post( {project} ) {
-  return  <BlogPost post={project} />
+  return <>
+    <div className="wrapper flex flex-col justify-items-stretch h-full">
+      <Header />
+      <ProjectFull project={project} links={links} />
+      <Footer />
+    </div>
+   </>
 }
 
 
@@ -42,15 +49,33 @@ export async function getStaticProps( {params} ) {
         content {
           html
         }
+        files {
+          url
+        }
       }
     } 
   `;
- 
+
   const { data: { projects: [project] } } = await client.query(
     {query: graphQuery, variables: {slug: params.slug}}
   );
 
-  return { props: {project} }
+  //find 2 links for prev and next article
+  const links = await client.query(
+    {query: gql`{
+      projects { 
+          slug
+          title
+        } 
+      }`
+    }
+  );
+
+  const index = links.data.projects.findIndex( item => item.slug == params.slug);
+  const prevLink = links.data.projects[index-1] ?? null;
+  const nextLink = links.data.projects[index+1] ?? null;
+
+  return { props: {project, links: {prev: prevLink, next: nextLink}} }
 }
 
 // This function gets called at build time
