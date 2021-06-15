@@ -1,6 +1,6 @@
 import React from "react";
-import Header from "./Header.jsx";
-import Footer from "./Footer.jsx";
+// import Header from "./Header.jsx";
+// import Footer from "./Footer.jsx";
 import parse from 'html-react-parser';
 
 
@@ -11,7 +11,7 @@ function BlogPost( {post} ) {
         
             <React.Fragment>
                 <div className="wrapper flex flex-col justify-items-stretch h-full">
-                    <Header />
+
                     <div className="img bg-black-800">
                         <img className="object-cover w-full h-64" src={coverImage.url}></img>
                     </div>
@@ -21,7 +21,7 @@ function BlogPost( {post} ) {
                             {parse(content.html)}
                         </div>
                     </section>
-                    <Footer />
+     
                 </div>
             </React.Fragment>
 

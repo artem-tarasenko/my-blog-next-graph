@@ -1,7 +1,6 @@
 import React from "react";
 import { ApolloClient, InMemoryCache, gql } from '@apollo/client';
-import BlogPost from "../../components/BlogPost.jsx";
-import Blog from "../../components/blog.jsx";
+import BlogPost from "../../components/Blog/BlogPost.jsx";
 import Layout from '../../components/Layout.jsx';
 
 //! REMOVE THIS LINE LATER
@@ -22,7 +21,9 @@ const client = new ApolloClient({
 // #########################################################################################
 function Post( {post} ) {
   return  <>
-      <BlogPost post={post} />
+      <Layout>
+        <BlogPost post={post} />
+      </Layout>
   </>
 }
 

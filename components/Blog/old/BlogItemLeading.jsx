@@ -22,7 +22,7 @@ export default function BlogItemLeading( {item} ) {
                 </div>
             </div>
             <div className="cover w-1/2">
-                <img src={item.coverImage.url} />
+                <img className="img-clipped" src={item.coverImage.url} />
             </div>
 
 

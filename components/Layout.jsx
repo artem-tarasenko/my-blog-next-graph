@@ -3,7 +3,7 @@ import Header from "./Header.jsx";
 import Footer from "./Footer.jsx";
 import Prism from "Prismjs";
 
-function Layout(props) {
+function TemplateIncludes(props) {
 
     useEffect(() => {
       Prism.highlightAll();
@@ -13,14 +13,23 @@ function Layout(props) {
     return  <React.Fragment>
                 <div className="wrapper flex flex-col justify-items-stretch h-full">    
                     <Header />
-                    <section className="blog flex container 2xl mx-auto my-6 flex-grow">
+                    <section className="blog flex flex-col mb-6 flex-grow flex-shrink-0">
                         {props.children}
 
                     </section>
-                    
                     <Footer />
                 </div>
             </React.Fragment>
 }
 
-export default Layout;
+function TemplateWrapper( props ) {
+
+    return <>
+        <div className={`mx-auto container ${props.classes}`}>
+            {props.children}
+        </div>
+    </>
+}
+
+export default TemplateIncludes;
+export {TemplateWrapper}

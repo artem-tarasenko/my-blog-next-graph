@@ -2,7 +2,7 @@ import React from "react";
 //import '../styles/globals.css';
 
 import BlogLayout from "../../components/Blog/BlogLayout.jsx";
-import Layout from '../../components/Layout.jsx';
+import TemplateIncludes, {TemplateWrapper} from '../../components/Layout.jsx';
 // import { request, GraphQLClient, gql  } from 'graphql-request';
 import { ApolloClient, InMemoryCache, gql } from '@apollo/client';
 
@@ -51,9 +51,9 @@ function Index( props ) {
     //console.log("INITIAL POSTS DATA > ", posts);
     
     return  <React.Fragment>
-                <Layout>
-                    {posts.length > 1 ? <BlogLayout source={posts} test={"testing string"} category={"posts"} /> : <p>Loading...</p>}
-                </Layout>
+                <TemplateIncludes>
+                    {posts.length > 1 ? <BlogLayout source={posts} test={"testing string"} category={"posts"} intro={"IntroText"} /> : <p>Loading...</p>}
+                </TemplateIncludes>
             </React.Fragment>
 }
 
