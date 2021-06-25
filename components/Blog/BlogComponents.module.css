@@ -5,3 +5,52 @@
 .titleWide {
     width: 120%;
 }
+
+
+.blogLink > .blogLinkTitle {
+    transition: transform 200ms ease-in-out;
+    transform-origin: top;
+}
+.blogLink:hover > .blogLinkTitle {
+    transform: scaleY(0);
+}
+
+
+.blogLink .blogLinkMore {
+    transform: scaleY(0);
+    transform-origin: bottom;
+    transition: transform 200ms ease-in-out;
+}
+.blogLink:hover .blogLinkMore {
+    transform: scaleY(1)
+}
+
+.blogLink .blogLinkIcon {
+    transform: scaleY(0);
+    transform-origin: bottom;
+    transition-delay: 300ms;
+    transition: transform 200ms ease-in;
+}
+.blogLink:hover .blogLinkIcon {
+    transform: scaleY(1)
+}
+
+.blogLead .blogLeadButton > p {
+    opacity: 0;
+    transition: all 300ms ease-out 100ms;
+    transform: translateY(-10px);
+}
+.blogLead:hover .blogLeadButton > p {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.blogLead .blogLeadButtonIcon {
+    opacity: 0;
+    transition: all 200ms ease-in;
+    transform: translateY(-10px);
+}
+.blogLead:hover .blogLeadButtonIcon {
+    opacity: 1;
+    transform: translateY(0);
+}

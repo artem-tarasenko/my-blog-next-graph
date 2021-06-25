@@ -4,6 +4,7 @@ import { ApolloClient, InMemoryCache, gql } from '@apollo/client';
 import ProjectFull from "../../components/ProjectFull.jsx";
 import Header from "../../components/Header.jsx";
 import Footer from "../../components/Footer.jsx";
+import Layout from '../../components/Layout.jsx';
 
 
 //! REMOVE THIS LINE LATER
@@ -15,11 +16,11 @@ process.env['NODE_TLS_REJECT_UNAUTHORIZED'] = 0;
 export default function Post( {project, links} ) {
 
   return <>
-    <div className="wrapper flex flex-col justify-items-stretch h-full">
-      <Header />
-      <ProjectFull project={project} links={links} />
-      <Footer />
-    </div>
+    {/* <div className="wrapper flex flex-col justify-items-stretch h-full"> */}
+    <Layout coverImage={project.files.url} toTop={true} backlink='/portfolio/' >
+        <ProjectFull project={project} links={links} />
+    </Layout>
+    {/* </div> */}
    </>
 }
 

@@ -21,7 +21,7 @@ const client = new ApolloClient({
 // #########################################################################################
 function Post( {post} ) {
   return  <>
-      <Layout>
+      <Layout coverImage={post.coverImage.url} toTop={true} backlink='/posts/' >
         <BlogPost post={post} />
       </Layout>
   </>

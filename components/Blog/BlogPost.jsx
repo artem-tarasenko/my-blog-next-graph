@@ -12,9 +12,10 @@ function BlogPost( {post} ) {
             <React.Fragment>
                 <div className="wrapper flex flex-col justify-items-stretch h-full">
 
-                    <div className="img bg-black-800">
+                    {/* <div className="img bg-black-800">
                         <img className="object-cover w-full h-64" src={coverImage.url}></img>
-                    </div>
+                    </div> */}
+
                     <section className="blog flex container 2xl mx-auto my-6 flex-grow">
                         <div className="post-body container mx-64">
                             <h1>{post.title}</h1>

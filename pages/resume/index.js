@@ -2,9 +2,12 @@ import React, { useEffect, useState } from "react";
 import Header from "../../components/Header.jsx";
 import Footer from "../../components/Footer.jsx";
 import ResumeBlock from "../../components/ResumeBlock.jsx";
-import Layout from '../../components/Layout.jsx';
 // import GetAppIcon from '@material-ui/icons/GetApp';
 import { ApolloClient, InMemoryCache, gql } from '@apollo/client';
+import styles from "../../components/ResumeBlock.module.css";
+
+import Layout from '../../components/Layout.jsx';
+import BackButton from "../../components/BackButton/BackButton.jsx";
 
 
 
@@ -17,18 +20,20 @@ import { ApolloClient, InMemoryCache, gql } from '@apollo/client';
 export default function Resume( {resume = {}} ) {
     // const resume = resumes[0];
 
-    console.log("#### Resume content #### ", resume);
-
     return (
 
             <React.Fragment>
+              <Layout isResume={true} name={resume.name} subtitle={resume.subtitle} footerBackground={true} >
+
                 <div className="wrapper flex flex-col justify-items-stretch h-full">
-                    <Header />
-                    <section className="blog container 2xl mx-auto my-6 flex-grow">
+                    
+                    <section className="blog container 2xl mx-auto flex-grow">
                         <ResumeBlock resume={resume} />
+                        <BackButton top={true} />
                     </section>
-                    <Footer />
+                    
                 </div>
+              </Layout>
             </React.Fragment>
 
     )

@@ -24,10 +24,40 @@
       "static/chunks/webpack.js",
       "static/chunks/pages/_error.js"
     ],
+    "/next/dist/pages/_error": [
+      "static/chunks/main.js",
+      "static/chunks/webpack.js",
+      "static/chunks/pages/next/dist/pages/_error.js"
+    ],
+    "/portfolio": [
+      "static/chunks/main.js",
+      "static/chunks/webpack.js",
+      "static/chunks/pages/portfolio.js"
+    ],
+    "/portfolio/[slug]": [
+      "static/chunks/main.js",
+      "static/chunks/webpack.js",
+      "static/chunks/pages/portfolio/[slug].js"
+    ],
     "/posts": [
       "static/chunks/main.js",
       "static/chunks/webpack.js",
       "static/chunks/pages/posts.js"
+    ],
+    "/posts/[slug]": [
+      "static/chunks/main.js",
+      "static/chunks/webpack.js",
+      "static/chunks/pages/posts/[slug].js"
+    ],
+    "/resume": [
+      "static/chunks/main.js",
+      "static/chunks/webpack.js",
+      "static/chunks/pages/resume.js"
+    ],
+    "/snippets": [
+      "static/chunks/main.js",
+      "static/chunks/webpack.js",
+      "static/chunks/pages/snippets.js"
     ],
     "/snippets/[slug]": [
       "static/chunks/main.js",

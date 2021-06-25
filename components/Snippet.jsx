@@ -48,16 +48,17 @@ export const SnippetsSideMenu = ( {data} ) => {
       }
     
     return <>
-        <div className="divide-y-2 divide-darkgrey-700" >
+        <h2 className="px-2">More snippets</h2>
+        <div className="divide-y-2 divide-darkgrey-700 mt-4" >
             {
                 data.map((item, index) => {
                     if(index < 6) {
                     return <>
-                        <div className="pt-3 w-72 flex flex-col">
-                            <a className="leading-5 text-sm" href={`/snippets/${item.slug}`}>{item.title}</a>
-                            <div className="flex flex-row divide-x-3 divide-darkgrey-900 py-3">
+                        <div className="pt-3 w-72 flex flex-col hover:bg-indigo-50 transition-all ease-in-out duration-300">
+                            <a className="px-2 leading-5 text-sm" href={`/snippets/${item.slug}`}>{item.title}</a>
+                            <div className="px-2 flex flex-row divide-x-3 divide-darkgrey-900 py-3">
                                 {
-                                    item.tags.map( tag => <p className="text-xs mr-2">{tag}</p>)
+                                    item.tags.map( tag => <p className="text-xs mr-2">{shortenString(tag, 100)}</p>)
                                 }
                             </div>
                             {/* <p className="text-sm">{shortenString(item.excerpt, 100)}</p> */}
@@ -68,9 +69,9 @@ export const SnippetsSideMenu = ( {data} ) => {
                 })
             }
         </div>
-        <div className="mt-8 uppercase">
+        {/* <div className="px-2 mt-8 uppercase ">
             
-            <Link href="/snippets">Back to list</Link>
-        </div>
+            <Link href="/snippets" className="">Back to list</Link>
+        </div> */}
     </>
 }

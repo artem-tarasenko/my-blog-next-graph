@@ -1,6 +1,8 @@
-import React, { useEffect, useReducer, useState } from "react";
+import React, { useReducer } from "react";
 import { ApolloClient, InMemoryCache, gql } from '@apollo/client';
 import Layout from '../../components/Layout.jsx';
+import IntroBlock from "../../components/IntroBlock.jsx";
+import styles from "./../../components/IntroBlock.module.css";
 
 
 //! REMOVE THIS LINE LATER
@@ -30,17 +32,25 @@ export async function getStaticProps() {
         }`
     });
 
+    const { data: {intros} } = await client.query({
+        query: gql`{ 
+            intros(where: {category: "Blog"}) {
+                category
+                content
+              }
+        }`
+    });
+
     //collecting all possible tags for snippets to pass them as default value
     let tagsArray = []
     snippets.forEach(snippet => snippet.tags.forEach(tag => !tagsArray.includes(tag) && tagsArray.push(tag)));
 
     let newArr = [];
     tagsArray.forEach(item => newArr.push({tag: item, isActive: true, isSelected: false}));
-    const initialContent = { snippets: snippets, filter: newArr, allTags: tagsArray, defaultFilter: newArr }
+    const initialContent = { snippets: snippets, filter: newArr, allTags: tagsArray, defaultFilter: newArr, intro: intros[0] }
 
     return { props: initialContent};
   }
-
 
 const ACTIONS = {
     ADD_FILTER: 'add',
@@ -114,14 +124,10 @@ function reducer(content, action) {
 // ###############################################################
 //! AllTags \ allSnippets - probably not needed...
 
-function Index( {snippets, filter, allTags, defaultFilter} ) {
+function Index( {snippets, filter, allTags, defaultFilter, intro} ) {
     const [content, dispatch] = useReducer(reducer, {snippets, filter, allTags, defaultFilter, allSnippets: [...snippets]})
 
-    console.group('State');
     const snipTitles = content.snippets.map(item => item.title)
-    console.log("Snippets: ", content.snippets.length, snipTitles);
-    console.log("Filter: ", content.filter);
-    console.groupEnd();
 
     function handleFiltering(e) {
 
@@ -135,14 +141,14 @@ function Index( {snippets, filter, allTags, defaultFilter} ) {
             return
         };
     }
-   
+
+  
     return  <React.Fragment>
-                <Layout >
-                    <React.Fragment>
+
+                <Layout intro={intro} padding={false} footerBackground={true} >
                     <div className="flex flex-column my-6 flex-col">
                         <div className="px-64">
-                            <p>Nay whatever way delicate passed of avoid might sing whatever all window concealed. Dissuade whole many age mistress late sentiments held doubt scarcely against invitation answer enable. Visited engage steepest shall beyond subject civilly performed concluded offence farther.</p>
-                            <div className="tags-filter flex flex-row mt-6">
+                            <div className="tags-filter flex flex-row mt-2">
                                 {
                                     content.filter && content.filter.map( (filter, index) => <button className={`tag px-2 py-1 border mr-2 ${filter.isSelected ? 'selected' : ''}`}
                                         disabled={!filter.isActive} key={index} onClick={handleFiltering} value={filter.tag} >
@@ -152,8 +158,7 @@ function Index( {snippets, filter, allTags, defaultFilter} ) {
                                 }
                             </div>
                         </div>
-                        <div className="pt-8 flex flex-row flex-wrap items-stretch">
-                            {/* <p>Snippet</p><p>Snippet</p><p>Snippet</p> */}
+                        <div className="snippets py-8 flex flex-row flex-wrap items-stretch">
                             {
                                 content.snippets && content.snippets.map( (snippet, index) => 
                                     <Snippet snippet={snippet} key={index} tags={snippet.tags} />
@@ -161,15 +166,15 @@ function Index( {snippets, filter, allTags, defaultFilter} ) {
                             }
                         </div>
                     </div>
-                    </React.Fragment>
                 </Layout>
+                
             </React.Fragment>
-}
+}               
 
 const Snippet = (props) => {
     return <>
         <div className="p-2 flex-shring-0 w-1/4 flex" >
-            <div className="bg-gray-200 p-3">
+            <div className={`${styles.introBGSoft} p-3`}>
                 <h2 className="pb-2 text-lg leading-5"><a href={`snippets/${props.snippet.slug}`}>{props.snippet.title}</a></h2>
                 <p className="text-sm leading-4">{props.snippet.excerpt}</p>
                 <span className="snippet-tags flex flex-row pt-2 flex-wrap">

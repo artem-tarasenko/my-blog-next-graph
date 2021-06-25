@@ -9,10 +9,6 @@ function ProjectFull( {project, links} ) {
     return (
         
             <React.Fragment>
-
-                    <div className="img bg-black-800">
-                        <img className="object-cover w-full h-64" src={project.files.url}></img>
-                    </div>
                     <section className="blog flex container 2xl mx-auto my-6 flex-grow">
                         <div className="post-body h-full mx-64">
                             <h1 className="my-4">{project.title}</h1>

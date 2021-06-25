@@ -1,0 +1,39 @@
+.buttonBack a, .buttonTop a {
+    transform: translateX(0);
+    transition: all 300ms ease-in-out;
+    cursor: pointer;
+}
+
+.buttonBack:hover a, .buttonTop:hover a {
+    color: #4B5563;
+}
+
+.buttonBack:hover a {
+    transform: translateX(-5px);
+}
+
+.buttonTop:hover a {
+    transform: translateX(5px);
+}
+
+.buttonBack svg, .buttonTop svg {
+    width: 20px;
+    margin: 0 10px;
+    fill: #6B7280;
+    opacity: 0;
+    transition: all 300ms ease-in-out;
+}
+
+.buttonBack svg {
+    transform: translateX(10px);
+}
+.buttonTop svg {
+    transform: translateX(-10px);
+}
+
+.buttonBack:hover svg, .buttonTop:hover svg {
+    transform: translateX(0);
+    opacity: 1;
+}
+
+

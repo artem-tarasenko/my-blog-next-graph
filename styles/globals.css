@@ -54,6 +54,14 @@ html, body, #__next {
   }
 
   .main-menu {
-    border-bottom: 1px solid #e0e0e0;
-    box-shadow: 0px -4px 11px grey;
+    /* border-bottom: 1px solid #e0e0e0;
+    box-shadow: 0px -4px 11px grey; */
+  }
+
+  .menu-item {
+    color: chocolate
+  }
+
+  .menu-item.active {
+    color: slateblue;
   }

@@ -9,21 +9,16 @@ import { ApolloClient, InMemoryCache, gql } from '@apollo/client';
 
 
 
-
-
-
-
 // ###############################################################
 // ###############################################################
-function Index( props ) {
+function Index( {projects, intros} ) {
     //get props from getStaticProps and destructure it to new object
     //recieveing posts prop = ["array from response"], and default empty []
-    const { projects = [] } = props;
-    //console.log("PORTFOLIO RENDER DATA > ", projects);
+
 
     return  <React.Fragment>
-                <Layout >
-                    {projects.length > 1 ? <Project source={projects} test={"testing string"} category={"portfolio"} /> : <p>Loading...</p>}
+                <Layout intro={intros[0]} padding={true} footerBackground={true} >
+                        {projects.length > 1 ? <Project source={projects} test={"testing string"} category={"portfolio"} /> : <p>Loading...</p>}
                 </Layout>
             </React.Fragment>
 }
@@ -61,5 +56,14 @@ export async function getStaticProps() {
         }`
     });
 
-    return { props: {projects} };
+    const { data: {intros} } = await client.query({
+        query: gql`{ 
+            intros(where: {category: "Blog"}) {
+                category
+                content
+              }
+        }`
+    });
+
+    return { props: {projects, intros} };
   }

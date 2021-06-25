@@ -1,16 +1,8 @@
 import React from "react";
-import Image from 'next/image';
-import Link from 'next/link';
-// import BlogItemShort from './BlogItemShort.jsx';
-// import BlogItemLink from './BlogItemLink.jsx';
 import BlogItemShort, { BlogItemLink, BlogItemLeading } from './BlogComponents.jsx';
-import IntroBlock from "./../IntroBlock.jsx";
-import {TemplateWrapper} from '../../components/Layout.jsx';
 
 
 function BlogLayout(props) {
-
-    console.log("ALL", props.source);
 
     //! NEED TO SORT ITEMS BY DATE OF PUBLISHING
 
@@ -19,17 +11,17 @@ function BlogLayout(props) {
     const linkedItems = props.source.slice(4)
     
 
-    console.group("items sorted")
-    console.log("main", mainArticles);
-    console.log("leading", leadingItem);
-    console.log("links", linkedItems);
-    console.groupEnd();
+    // console.group("items sorted")
+    // console.log("main", mainArticles);
+    // console.log("leading", leadingItem);
+    // console.log("links", linkedItems);
+    // console.groupEnd();
 
       
     return  <React.Fragment>
-                <IntroBlock />
-                <TemplateWrapper>
-                    <div className="container flex flex-column mb-6 px-48">
+                
+                
+                    <div className="flex flex-column mb-6 z-10">
                         <div className="blog-items">
                             <BlogItemLeading item={leadingItem} category={props.category} />
                             <div className="mt-12 pt-4">
@@ -41,7 +33,7 @@ function BlogLayout(props) {
                             </div>
                         </div>
                     </div>
-                </TemplateWrapper>
+                
             </React.Fragment>
 }
 

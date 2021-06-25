@@ -16,20 +16,7 @@ import LinearProgress from '@material-ui/core/LinearProgress';
 
 export default function ResumeBlock({resume}) {
     return <React.Fragment>
-        <div className="resume mx-64 mt-8 flex flex-col">
-
-            <div className="">
-                <div className="title flex flex-row justify-between">
-                    <h1 className="text-6xl">{resume.name}</h1>
-                    <a className={`download-btn flex px-2 py-2 ${styles.downloadButton}`} href="#">
-                        <p className={`group-hover:scale-x-120 ${styles.downloadButtonText}`}>Download</p>
-                        <img className={`h-12 group-hover:scale-x-120 ${styles.downloadButtonIcon}`} src="/icons/pdf.png"/>
-                    </a>
-                </div>
-                <h3 className="text-xl mb-8 uppercase text-gray-700">{resume.subtitle}</h3>
-                
-            </div>
-
+        <div className="resume mx-64 my-8 flex flex-col">
             <div className="personal my-4">
                 <h2 className="border-b-2 border-gray-300 uppercase py-2">Personal information</h2>
                 <div className="flex ml-8">

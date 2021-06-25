@@ -10,11 +10,11 @@ export default function Project(props) {
 
     return  <React.Fragment>
 
-                        <div className="flex flex-column mb-6 mx-64">
+                        <div className="flex flex-column mb-6 mt-8">
                             <div className="blog-items flex flex-row flex-wrap justify-between">
                                 {props.source.map((item, index) => <>
                                     
-                                    <div className="flex flex-col justify-center w-1/2 px-8 py-4">
+                                    <div className="flex flex-col items-center  w-1/2 px-8 py-4">
                                         <Link href={`/${props.category}/[slug]`} as={`/${props.category}/${item.slug}`} className=" ">
                                             <div className="flex-shrink-0 flex flex-col items-center group relative">
                                                 <img className={`${styles.project} project w-100 rounded-xl object-cover`} src={item.files.url} />

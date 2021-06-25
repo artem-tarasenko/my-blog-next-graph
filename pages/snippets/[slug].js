@@ -32,11 +32,13 @@ function Post( {data, menuData} ) {
   }, []);
 
     return <>
-      <Layout >
-        <div className="sidemenu mt-16">
-          <SnippetsSideMenu data={menuData} />
+      <Layout toTop={true} backlink="/snippets/">
+        <div className="flex flex-row flex-nowrap">
+          <div className="sidemenu mt-8">
+            <SnippetsSideMenu data={menuData} />
+          </div>
+          <Snippet snippet={data} />
         </div>
-        <Snippet snippet={data} />
       </Layout>
     </>
 }
