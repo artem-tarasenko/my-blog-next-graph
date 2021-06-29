@@ -15,7 +15,7 @@ export default function IntroBlock( props ) {
             {
                 props.image ? <>
                         <div className="img bg-black-800 w-full">
-                            <img className="object-cover w-full h-48" src={props.image}></img>
+                            <img className={`${styles.img} object-cover w-full h-48 shadow-md border-t-2 border-opacity-20`} src={props.image}></img>
                         </div>
                 </> : null
             }

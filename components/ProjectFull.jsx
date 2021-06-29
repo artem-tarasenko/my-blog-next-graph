@@ -2,6 +2,7 @@ import React from "react";
 import parse from 'html-react-parser';
 import ArrowBackIcon from '@material-ui/icons/ArrowBack';
 import ArrowForwardIcon from '@material-ui/icons/ArrowForward';
+import styles from "./ProjectFull.module.css";
 
 
 function ProjectFull( {project, links} ) {
@@ -10,7 +11,7 @@ function ProjectFull( {project, links} ) {
         
             <React.Fragment>
                     <section className="blog flex container 2xl mx-auto my-6 flex-grow">
-                        <div className="post-body h-full mx-64">
+                        <div className={`${styles.post} h-full mx-64`}>
                             <h1 className="my-4">{project.title}</h1>
                             {parse(project.content.html)}
                             <div className="flex flex-wrap mt-4">

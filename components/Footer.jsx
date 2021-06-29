@@ -5,7 +5,7 @@ function Footer( props ) {
 
     return  <React.Fragment>
         <footer className={`flex-shrink-0 z-10 ${props.bg ? "bg-white" : null}`} >
-            <div className="container 2xl mx-auto py-8 block">
+            <div className="container 2xl mx-auto py-8 mt-8 block">
                 <div className="container 2xl mx-auto flex flex-col justify-center">
                     <p className="text-center text-gray-400 ">The website was created by using these wonderful products</p>
                     <div className="flex justify-center mt-2 items-center">

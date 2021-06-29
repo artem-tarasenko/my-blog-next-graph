@@ -1,7 +1,7 @@
 import React, { useReducer } from "react";
 import { ApolloClient, InMemoryCache, gql } from '@apollo/client';
 import Layout from '../../components/Layout.jsx';
-import IntroBlock from "../../components/IntroBlock.jsx";
+// import IntroBlock from "../../components/IntroBlock.jsx";
 import styles from "./../../components/IntroBlock.module.css";
 
 
@@ -34,7 +34,7 @@ export async function getStaticProps() {
 
     const { data: {intros} } = await client.query({
         query: gql`{ 
-            intros(where: {category: "Blog"}) {
+            intros(where: {category: "Snippets"}) {
                 category
                 content
               }
@@ -61,14 +61,13 @@ const ACTIONS = {
 
 function reducer(content, action) {
     const initState = content.allSnippets; //all 8 items
-    console.log("-- Reducer, CONTENT CURRENT --", content.snippets)
     
     switch(action.type) {
         case ACTIONS.ADD_FILTER: {
             console.log("-- Reducer, ADD --")
             const updatedFilter = content.filter.map( item => item.tag === action.payload.tag ? {...item, isSelected: true} : {...item});
             const updatedSnippets = filterSnippets(updatedFilter);
-            console.log("Adding to current state: ", updatedSnippets.length)
+            // console.log("Adding to current state: ", updatedSnippets.length)
 
             return {...content, filter: updatedFilter, snippets: updatedSnippets}
         }
@@ -84,7 +83,7 @@ function reducer(content, action) {
                 return {...content, filter: updatedFilter, snippets: updatedSnippets}
             } else {
                 //set defauld
-                console.log("Resetting filter to default values")
+                // console.log("Resetting filter to default values")
                 return {...content, snippets: initState, filter: content.defaultFilter}
             }
         } 
@@ -101,7 +100,7 @@ function reducer(content, action) {
 
     function filterSnippets(filters) {
         const activeTags = filters.reduce( (arr, item) => item.isSelected ? [...arr, item.tag] : arr, [])
-        console.log("filterSnippets -> tags", activeTags)
+        // console.log("filterSnippets -> tags", activeTags)
 
 
         const newSnippets = initState.reduce( (arr, snippet) => { 
@@ -114,7 +113,7 @@ function reducer(content, action) {
         }, [])
 
         
-        console.log("filterSnippets -> res arr", newSnippets)
+        // console.log("filterSnippets -> res arr", newSnippets)
 
         return newSnippets;
     }
@@ -126,22 +125,20 @@ function reducer(content, action) {
 
 function Index( {snippets, filter, allTags, defaultFilter, intro} ) {
     const [content, dispatch] = useReducer(reducer, {snippets, filter, allTags, defaultFilter, allSnippets: [...snippets]})
-
     const snipTitles = content.snippets.map(item => item.title)
 
     function handleFiltering(e) {
 
         if(e.target.classList.contains("selected")) {
-            console.log("Disabling filter..");
+            // console.log("Disabling filter..");
             dispatch({type: ACTIONS.REMOVE_FILTER, payload: {tag: e.target.value}});
             return
         } else {
-            console.log("Adding new filter")
+            // console.log("Adding new filter")
             dispatch({type: ACTIONS.ADD_FILTER, payload: {tag: e.target.value}})
             return
         };
     }
-
   
     return  <React.Fragment>
 

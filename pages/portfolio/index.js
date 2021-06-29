@@ -1,9 +1,7 @@
 import React from "react";
-//import '../styles/globals.css';
 
 import Project from "../../components/Project.jsx";
 import Layout from '../../components/Layout.jsx';
-// import { request, GraphQLClient, gql  } from 'graphql-request';
 import { ApolloClient, InMemoryCache, gql } from '@apollo/client';
 
 
@@ -15,6 +13,7 @@ function Index( {projects, intros} ) {
     //get props from getStaticProps and destructure it to new object
     //recieveing posts prop = ["array from response"], and default empty []
 
+    // console.log("PORT INTRO", intros)
 
     return  <React.Fragment>
                 <Layout intro={intros[0]} padding={true} footerBackground={true} >
@@ -58,7 +57,7 @@ export async function getStaticProps() {
 
     const { data: {intros} } = await client.query({
         query: gql`{ 
-            intros(where: {category: "Blog"}) {
+            intros(where: {category: "Portfolio"}) {
                 category
                 content
               }

@@ -11,10 +11,6 @@ import BackButton from "../../components/BackButton/BackButton.jsx";
 
 
 
-
-
-
-
 // ###############################################################
 // ###############################################################
 export default function Resume( {resume = {}} ) {
@@ -87,7 +83,7 @@ export async function getStaticProps() {
             }`
     });
 
-    console.log("SSR > ", resume)
+    // console.log("SSR > ", resume)
 
     return { props: {resume} };
   }

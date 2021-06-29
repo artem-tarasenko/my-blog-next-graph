@@ -11,7 +11,7 @@ import styles from "./Snippet.module.css"
 //  #############     //BODY     ###############################################
 export function Snippet( {snippet} ) {
     // var result = md.render(snippet.content);
-    console.log(snippet.tags)
+    // console.log(snippet.tags)
 
     return <>
         <div className="wrapper flex flex-col justify-items-stretch h-full my6 py-6">
