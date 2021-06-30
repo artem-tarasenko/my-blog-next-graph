@@ -33,7 +33,7 @@ export function Snippet( {snippet} ) {
                             <WebIcon className="mr-2" fontSize='small' />{snippet.example}
                         </a>
                     </div>
-                    {parse(project.content.html)}
+                    {parse(snippet.content.html)}
                     {/* <ReactMarkdown>{snippet.content}</ReactMarkdown> */}
                     <div className="post-tags flex flex-row">
                         {
