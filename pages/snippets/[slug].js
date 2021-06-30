@@ -1,9 +1,8 @@
-import React from "react";
-import {useEffect} from "react";
+import React, {useEffect} from "react";
 import { ApolloClient, InMemoryCache, gql } from '@apollo/client';
 import {Snippet, SnippetsSideMenu} from "../../components/Snippet.jsx";
 import Layout from '../../components/Layout.jsx';
-import Prism from "prismjs"
+import Prism from "prismjs";
 
 
 //! REMOVE THIS LINE LATER
