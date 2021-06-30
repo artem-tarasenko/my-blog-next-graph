@@ -3,7 +3,8 @@ import Image from 'next/image';
 import GitHubIcon from '@material-ui/icons/GitHub';
 import WebIcon from '@material-ui/icons/Web';
 import Link from 'next/link';
-import ReactMarkdown from 'react-markdown'
+import ReactMarkdown from 'react-markdown';
+// import Prism from "prismjs";
 
 import styles from "./Snippet.module.css"
 
@@ -12,6 +13,12 @@ import styles from "./Snippet.module.css"
 export function Snippet( {snippet} ) {
     // var result = md.render(snippet.content);
     // console.log(snippet.tags)
+
+    // useEffect(() => {
+    //     if (typeof window !== 'undefined') {
+    //         Prism.highlightAll();
+    //     }
+    // }, []);
 
     return <>
         <div className="wrapper flex flex-col justify-items-stretch h-full my6 py-6">

@@ -3,7 +3,7 @@ import {useEffect} from "react";
 import { ApolloClient, InMemoryCache, gql } from '@apollo/client';
 import {Snippet, SnippetsSideMenu} from "../../components/Snippet.jsx";
 import Layout from '../../components/Layout.jsx';
-import Prism from "Prismjs"
+import Prism from "prismjs"
 
 
 //! REMOVE THIS LINE LATER
@@ -16,11 +16,7 @@ import Prism from "Prismjs"
 
 function Post( {data, menuData} ) {
 
-  useEffect(() => {
-      if (typeof window !== 'undefined') {
-          Prism.highlightAll();
-      }
-  }, []);
+
 
     return <>
       <Layout toTop={true} backlink="/snippets/">
