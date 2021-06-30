@@ -81,12 +81,11 @@ export async function getStaticProps( {params} ) {
             excerpt
             slug
             tags
-            content
-            repo
-            example
-            asd22 {
+            content {
               html
             }
+            repo
+            example
         }
     } 
   `;

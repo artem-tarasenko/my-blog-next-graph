@@ -1,10 +1,9 @@
 import React from "react";
-import Image from 'next/image';
 import GitHubIcon from '@material-ui/icons/GitHub';
 import WebIcon from '@material-ui/icons/Web';
-import Link from 'next/link';
 import ReactMarkdown from 'react-markdown';
 // import Prism from "prismjs";
+import parse from 'html-react-parser';
 
 import styles from "./Snippet.module.css"
 
@@ -34,7 +33,8 @@ export function Snippet( {snippet} ) {
                             <WebIcon className="mr-2" fontSize='small' />{snippet.example}
                         </a>
                     </div>
-                    {<ReactMarkdown>{snippet.content}</ReactMarkdown>}
+                    {parse(project.content.html)}
+                    {/* <ReactMarkdown>{snippet.content}</ReactMarkdown> */}
                     <div className="post-tags flex flex-row">
                         {
                             snippet.tags.map(item => <p className={`${styles.snippetTags} mt-8 mx-2 text-lg`}>{item}</p>)
