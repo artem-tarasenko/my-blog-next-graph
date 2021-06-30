@@ -1,15 +1,6 @@
 {
   "/_app": "pages/_app.js",
-  "/api/graph": "pages/api/graph.js",
-  "/": "pages/index.html",
-  "/portfolio/[slug]": "pages/portfolio/[slug].js",
-  "/portfolio": "pages/portfolio.js",
-  "/posts/[slug]": "pages/posts/[slug].js",
-  "/posts": "pages/posts.js",
-  "/resume": "pages/resume.js",
-  "/snippets/[slug]": "pages/snippets/[slug].js",
-  "/snippets": "pages/snippets.js",
   "/_error": "pages/_error.js",
   "/_document": "pages/_document.js",
-  "/404": "pages/404.html"
+  "/posts": "pages/posts.js"
 }

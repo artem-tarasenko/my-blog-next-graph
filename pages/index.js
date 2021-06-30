@@ -4,7 +4,7 @@ import React from "react";
 import Layout from '../components/Layout.jsx';
 
 //! REMOVE THIS LINE LATER
-process.env['NODE_TLS_REJECT_UNAUTHORIZED'] = 0;
+// process.env['NODE_TLS_REJECT_UNAUTHORIZED'] = 0;
 
 
 
