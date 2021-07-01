@@ -5,11 +5,12 @@ function Footer( props ) {
 
     return  <React.Fragment>
         <footer className={`flex-shrink-0 z-10 ${props.bg ? "bg-white" : null}`} >
-            <div className="container 2xl mx-auto py-8 mt-8 block">
-                <div className="container 2xl mx-auto flex flex-col justify-center">
-                    <p className="text-center text-gray-400 ">The website was created by using these wonderful products</p>
+            <div className="container 2xl mx-auto py-8 mt-0 lg:mt-8 ">
+                <div className="container 2xl px-4 lg:px-0 lg:mx-auto flex flex-col justify-center">
+                    <p className="text-sm lg:text-base text-center text-gray-400 ">The website was created by using these wonderful products</p>
+
                     <div className="flex justify-center mt-2 items-center">
-                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 178.56 39.81" className={`h-8 mx-4 fill-current ${props.logoColor ? props.logoColor : 'text-gray-500'}`}>
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 178.56 39.81" className={`h-6 lg:h-8 mx-4 fill-current ${props.logoColor ? props.logoColor : 'text-gray-500'}`}>
                             <g id="Layer_2" data-name="Layer 2">
                                 <g id="Layer_1-2" data-name="Layer 1">
                                 <path class="cls-1" d="M0,39.11c2.69-4.31,5.45-8.59,8.05-12.95,5.08-8.5,10.07-17,15.43-26.16L46.62,39.19c-.24.33-.37.62-.49.62q-23.05,0-46.13,0Z"/>
@@ -23,7 +24,7 @@ function Footer( props ) {
                             </g>
                         </svg>
 
-                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 123.33 66.29" className={`h-8 mx-4 fill-current ${props.logoColor ? props.logoColor : 'text-gray-500'}`}>
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 123.33 66.29" className={`h-10 lg:h-12 mx-4 fill-current ${props.logoColor ? props.logoColor : 'text-gray-500'}`}>
                             <g id="Layer_2" data-name="Layer 2">
                                 <g id="Layer_1-2" data-name="Layer 1">
                                     <path class="cls-1" d="M64.7,34c-3.85-5.4-8.09-11.18-11.89-16.51h2.77s6.12,8.6,8.68,12.14c.56.78,1.19,1.52,1.87,2.38L86.49,5.14c1-1.2,4.19-5.19,4.26-5.14s-2.4,3.81-3.58,5.62C80.69,15,74.22,24.42,67.65,34L80.21,51.42H77.52L66.13,35.76,54.74,51.39H52.09Z"/>
@@ -37,7 +38,7 @@ function Footer( props ) {
                             </g>
                         </svg>
                         
-                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 347.36 74.62" className={`h-8 mx-4 fill-current ${props.logoColor ? props.logoColor : 'text-gray-500'}`}>
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 347.36 74.62" className={`h-6 lg:h-8 mx-4 fill-current ${props.logoColor ? props.logoColor : 'text-gray-500'}`}>
                             <g id="Layer_2" data-name="Layer 2">
                                 <g id="Layer_1-2" data-name="Layer 1">
                                     <path class="cls-1" d="M7.25,74.62C5.49,72.33,2.28,72,0,69.16L34.17,49.45V20.37L17.84,29.69A29.24,29.24,0,0,0,18,38.44l8.13-4a46.92,46.92,0,0,1,0,10.46L8.49,55V24.25L34.25,9.44,34.67,0c3.7.24,6,2.76,9.06,4.33V54.76C38.09,58,32.15,61.33,26.34,64.85,21,68.1,15.11,70.54,10.25,74.62Z"/>

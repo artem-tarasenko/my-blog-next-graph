@@ -1,20 +1,23 @@
-import React, {useEffect} from "react";
+import React from "react";
+import Head from "next/head";
 import Header from "./Header.jsx";
 import Footer from "./Footer.jsx";
 import IntroBlock from "./IntroBlock.jsx";
 import ResumeHeader from "./ResumeHeader.jsx";
 import BackButton from "./BackButton/BackButton.jsx";
-import btnStyles from "./BackButton/BackButton.jsx"
-
+import BackButtonStyles from "./BackButton/BackButton.module.css";
 
 function Layout(props) {
 
     return  <React.Fragment>
         
         <BgPicture />
-        <div className="lg:wrapper lg:h-full justify-items-stretch 
+        <div className="lg:wrapper h-full justify-items-stretch 
                         z-20 flex flex-col w-screen">
             
+            <Head>
+                <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+            </Head>
             <Header />
             {props.intro ? <IntroBlock intro={props.intro}/> : null }
             {props.coverImage ? <IntroBlock image={props.coverImage}/> : null }
@@ -25,7 +28,7 @@ function Layout(props) {
                 </div>
             </section>
                 
-            <div className={`${btnStyles.backButtons} flex justify-center`}></div>
+            <div className={`${BackButtonStyles.backButtons} flex justify-center`}></div>
             <BackButton link={props.backlink} top={props.toTop} />
             <Footer bg={props.footerBackground} logoColor={props.logoColor} />
             
@@ -36,7 +39,7 @@ function Layout(props) {
 
 function BgPicture() {
     return <>
-    <picture className="bg fixed lg:top-0 z-0 lg:h-screen">
+    <picture className="bg fixed top-0 z-0 lg:h-screen min-h-full min-w-full">
         <source type="image/webp" media="(min-width: 1921px)" srcSet="images/bg/bg-2xl.webp" />
         <source type="image/jpeg" media="(min-width: 1921px)" srcSet="images/bg/bg-2xl.jpg" />
 
@@ -49,7 +52,7 @@ function BgPicture() {
         <source type="image/webp" media="(max-width: 460px)"  srcSet="images/bg/bg-xl.webp" />
         <source type="image/png"  media="(max-width: 460px)"  srcSet="images/bg/bg-xl.jpg" />
 
-        <img src="images/bg.jpg" className="fixed lg:bottom-0 lg:h-full w-auto"></img>
+        <img src="images/bg.jpg" className="h-screen w-screen object-cover"></img>
     </picture>
     </>
 }
