@@ -1,9 +1,21 @@
-import React from "react";
+import React, { useEffect } from "react";
 import Link from 'next/link';
 import styles from "./MenuDesktop.module.css";
+// import menuStyles from "./Menu/MenuDesktop.module.css";
 
 export default function MenuDesktop() {
-    console.log("Loading desktop menu")
+    console.log("Loading desktop menu");
+
+    //location for useEffect func below
+    let location = '';
+
+    useEffect( () => {
+        location = window.location.href.split('/');
+        const button = document.querySelector(`.${location[3] ? location[3] : 'home'}-button`);
+        button.classList.add(`${styles.active}`);
+
+        // console.log("Menu - isMobile: ", isMobile)
+    },[])
 
     return <>
         <header className="flex-shrink-0 flex-grow-0 z-50">
