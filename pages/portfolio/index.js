@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState, useEffect} from "react";
 
 import Project from "../../components/Project.jsx";
 import Layout from '../../components/Layout.jsx';
@@ -14,9 +14,15 @@ function Index( {projects, intros} ) {
     //recieveing posts prop = ["array from response"], and default empty []
 
     // console.log("PORT INTRO", intros)
+    const [isMobile, setIsMobile] = useState(false);
+
+    useEffect( () => {
+    // isMobile = window.innerWidth <= 640;
+        setIsMobile( () => window.innerWidth <= 640)
+    }, [])
 
     return  <React.Fragment>
-                <Layout intro={intros[0]} padding={true} footerBackground={true} >
+                <Layout intro={intros[0]} padding={true} footerBackground={true} isMobile={isMobile} title="Portfolio">
                         {projects.length > 1 ? <Project source={projects} test={"testing string"} category={"portfolio"} /> : <p>Loading...</p>}
                 </Layout>
             </React.Fragment>

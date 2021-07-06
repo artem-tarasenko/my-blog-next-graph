@@ -1,4 +1,4 @@
-import React, { useReducer } from "react";
+import React, { useReducer, useEffect, useState } from "react";
 import { ApolloClient, InMemoryCache, gql } from '@apollo/client';
 import Layout from '../../components/Layout.jsx';
 // import IntroBlock from "../../components/IntroBlock.jsx";
@@ -123,8 +123,16 @@ function reducer(content, action) {
 // ###############################################################
 
 function Index( {snippets, filter, allTags, defaultFilter, intro} ) {
-    const [content, dispatch] = useReducer(reducer, {snippets, filter, allTags, defaultFilter, allSnippets: [...snippets]})
-    const snipTitles = content.snippets.map(item => item.title)
+    const [content, dispatch] = useReducer(reducer, {snippets, filter, allTags, defaultFilter, allSnippets: [...snippets]});
+    const [isMobile, setIsMobile] = useState(false);
+    
+    const snipTitles = content.snippets.map(item => item.title);
+
+
+    useEffect( () => {
+    // isMobile = window.innerWidth <= 640;
+        setIsMobile( () => window.innerWidth <= 640)
+    }, [])
 
     function handleFiltering(e) {
 
@@ -141,12 +149,12 @@ function Index( {snippets, filter, allTags, defaultFilter, intro} ) {
   
     return  <React.Fragment>
 
-                <Layout intro={intro} padding={false} footerBackground={true} >
-                    <div className="flex flex-column my-6 flex-col">
-                        <div className="px-64">
-                            <div className="tags-filter flex flex-row mt-2">
+                <Layout intro={intro} padding={false} footerBackground={true}  isMobile={isMobile} title="Snippets" >
+                    <div className="flex flex-column my-6 flex-col w-full">
+                        <div className="lg:px-64 px-4">
+                            <div className="tags-filter flex flex-row mt-2 flex-wrap">
                                 {
-                                    content.filter && content.filter.map( (filter, index) => <button className={`tag px-2 py-1 border mr-2 ${filter.isSelected ? 'selected' : ''}`}
+                                    content.filter && content.filter.map( (filter, index) => <button className={`tag px-2 py-1 border m-2 lg:m-0 lg:mr-2 ${filter.isSelected ? 'selected' : ''}`}
                                         disabled={!filter.isActive} key={index} onClick={handleFiltering} value={filter.tag} >
                                             {filter.tag}
                                         </button>
@@ -169,8 +177,8 @@ function Index( {snippets, filter, allTags, defaultFilter, intro} ) {
 
 const Snippet = (props) => {
     return <>
-        <div className="p-2 flex-shring-0 w-1/4 flex" >
-            <div className={`${styles.introBGSoft} p-3`}>
+        <div className="p-2 flex-shrink-0 w-screen lg:w-1/4 flex" >
+            <div className={`${styles.introBGSoft} p-3 w-screen`}>
                 <h2 className="pb-2 text-lg leading-5"><a href={`snippets/${props.snippet.slug}`}>{props.snippet.title}</a></h2>
                 <p className="text-sm leading-4">{props.snippet.excerpt}</p>
                 <span className="snippet-tags flex flex-row pt-2 flex-wrap">

@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 //import '../styles/globals.css';
 
 import BlogLayout from "../../components/Blog/BlogLayout.jsx";
@@ -56,10 +56,16 @@ export async function getStaticProps() {
 function Index( {posts, intros} ) {
     //get props from getStaticProps and destructure it to new object
     //recieveing posts prop = ["array from response"], and default empty []
+    const [isMobile, setIsMobile] = useState(false);
+
+    useEffect( () => {
+    // isMobile = window.innerWidth <= 640;
+        setIsMobile( () => window.innerWidth <= 640)
+    }, [])
     
     return  <React.Fragment>
-                <Layout intro={intros[0]} padding={true} footerBackground={true} >
-                    {posts.length > 1 ? <BlogLayout source={posts} test={"testing string"} category={"posts"}  /> : <p>Loading...</p>}
+                <Layout intro={intros[0]} padding={true} footerBackground={true} isMobile={isMobile} title="Blog">
+                    {posts.length > 1 ? <BlogLayout source={posts} category={"posts"} isMobile={isMobile} /> : <p>Loading...</p>}
                 </Layout>
             </React.Fragment>
 }

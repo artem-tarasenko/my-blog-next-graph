@@ -15,7 +15,7 @@ export default function MenuMobile(props) {
 
     return <>
         { props.isActive ? <>  
-            <aside className="z-20 w-screen h-screen fixed bg-gray-600 bg-opacity-95 flex flex-col justify-evenly">
+            <aside className="z-20 w-full h-screen fixed bg-gray-600 bg-opacity-95 flex flex-col justify-evenly">
                 <h2 className="text-center text-gray-100 text-3xl">MENU</h2>
                 <div className="wrapper mx-4 my-6 flex flex-col items-center justify-start text-gray-100">
                     <Link href="/"><p className={styleMenuLink} onClick={hideMenu}>HOME</p></Link>

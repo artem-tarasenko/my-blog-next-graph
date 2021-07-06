@@ -5,9 +5,9 @@ import styles from "./IntroBlock.module.css";
 export default function IntroBlock( props ) {
 
     return <>
-        <div className="intro z-10 h-48 w-full flex flex-shrink-0">
+        <div className="my-6 lg:my-0 intro z-10 h-48 w-full flex flex-shrink-0">
             { props.intro ? <>
-                <div className="px-48 py-8 text-center self-center container mx-auto">
+                <div className="px-6 lg:px-48 py-8 text-center self-center container mx-auto">
                     <p className="text-xl font-light">{props.intro.content}</p>
                 </div>
                 </> : null

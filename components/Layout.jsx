@@ -9,27 +9,29 @@ import BackButtonStyles from "./BackButton/BackButton.module.css";
 
 function Layout(props) {
 
+
+
     return  <React.Fragment>
         
         <BgPicture />
-        <div className="lg:wrapper h-full justify-items-stretch 
-                        z-20 flex flex-col w-screen">
-            
+        <div className="lg:wrapper h-full justify-items-stretch z-20 flex flex-col w-screen">
             <Head>
                 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
             </Head>
-            <Header />
-            {props.intro ? <IntroBlock intro={props.intro}/> : null }
+            
+            <Header title={true} content={props.title} />
+            {props.intro ? <IntroBlock intro={props.intro} isMobile={props.isMobile} /> : null }
             {props.coverImage ? <IntroBlock image={props.coverImage}/> : null }
-            {props.isResume ? <ResumeHeader name={props.name} subtitle={props.subtitle} /> : null }
+            {props.isResume ? <ResumeHeader name={props.name} subtitle={props.subtitle} isMobile={props.isMobile} /> : null }
+
             <section className={`flex flex-col flex-grow flex-shrink-0 z-10 ${props.center ? 'justify-center' : 'justify-start'} ${props.transparent ? "bg-transparent" : "bg-white"}`}>
-                <div className={`${props.classes} container mx-auto ${props.padding ? 'px-48' : null} flex flex-col`}>
+                <div className={`${props.classes} container mx-auto ${props.padding ? 'px-6 lg:px-48' : null} flex flex-col`}>
                     {props.children}
                 </div>
             </section>
                 
             <div className={`${BackButtonStyles.backButtons} flex justify-center`}></div>
-            <BackButton link={props.backlink} top={props.toTop} />
+            <BackButton link={props.backlink} top={props.toTop} isMobile={props.isMobile} />
             <Footer bg={props.footerBackground} logoColor={props.logoColor} />
             
         </div>

@@ -22,10 +22,21 @@ function Header(props) {
         setIsActive(false)
     }
 
+    const Title = () => <>
+        <div className="mobile-title z-10 text-gray-800 self-center ml-6 uppercase"><h2>{props?.content}</h2></div>
+    </>
+
     return  <React.Fragment>
-                { !isActive ? <button onClick={showMenu} className="text-gray-700 z-10 left-0 self-end m-2 p-2"><MenuIcon fontSize="large" /></button> : null }
-                { isActive ? <button onClick={hideMenu} className="text-gray-100 z-30 left-0 self-end m-2 p-2"><CloseIcon fontSize="large" /></button> : null }
-                { isMobile ? <MenuMobile isActive={isActive} handleHiding={hideMenu} /> : <MenuDesktop />}
+                { isMobile ? <MenuMobile isActive={isActive} handleHiding={hideMenu} /> : <MenuDesktop />}  
+                <div className="flex justify-between border-b-2 border-opacity-20 border-gray-500 z-10 mx-4">
+                    { isMobile  
+                        ? props.title 
+                            ? <Title content={props.content} /> : null 
+                        : null }
+                    { !isActive ? <button onClick={showMenu} className="text-gray-700 z-10 left-0 self-end my-2 p-2"><MenuIcon fontSize="large" /></button> : null }
+                    { isActive ? <button onClick={hideMenu} className="text-gray-100 z-30 left-0 self-end my-2 p-2"><CloseIcon fontSize="large" /></button> : null }
+                </div>
+                
             </React.Fragment>
 }
 

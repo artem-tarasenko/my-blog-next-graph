@@ -14,18 +14,23 @@ import BackButton from "../../components/BackButton/BackButton.jsx";
 // ###############################################################
 // ###############################################################
 export default function Resume( {resume = {}} ) {
-    // const resume = resumes[0];
+    const [isMobile, setIsMobile] = useState(false);
+
+    useEffect( () => {
+    // isMobile = window.innerWidth <= 640;
+        setIsMobile( () => window.innerWidth <= 640)
+    }, [])
 
     return (
 
             <React.Fragment>
-              <Layout isResume={true} name={resume.name} subtitle={resume.subtitle} footerBackground={true} >
+              <Layout isResume={true} name={resume.name} subtitle={resume.subtitle} footerBackground={true} isMobile={isMobile} title="Resume">
 
                 <div className="wrapper flex flex-col justify-items-stretch h-full">
                     
-                    <section className="blog container 2xl mx-auto flex-grow">
-                        <ResumeBlock resume={resume} />
-                        <BackButton top={true} />
+                    <section className="blog container 2xl lg:mx-auto flex-grow">
+                        <ResumeBlock resume={resume} isMobile={isMobile}/>
+                        { !isMobile && <BackButton top={true} />}
                     </section>
                     
                 </div>
