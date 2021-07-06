@@ -11,9 +11,9 @@ export default function BackButton( props ) {
     }
         
     return <>
-        { !props.isMobile ? <div className="flex justify-center">
+        <div className="flex justify-center">
             { props.link ? <>
-                <div className={`${styles.buttonBack} flex items-center bg-white mx-2`} >
+                <div className={`${styles.buttonBack} flex items-center bg-white mx-2 -ml-8`} >
                     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 27.68 28.71">
                         <g>
                             <path class="cls-1" d="M17.71,28.71a2.5,2.5,0,0,1-1.62-.6L0,14.35,16.09.6a2.5,2.5,0,0,1,3.25,3.8L7.7,14.35l11.64,10a2.5,2.5,0,0,1-1.63,4.4Z"/>
@@ -36,8 +36,8 @@ export default function BackButton( props ) {
                     </svg>
                 </div> </> : null
             }
-            </div> 
-        : null}
+        </div> 
+        
     </>
     
 }

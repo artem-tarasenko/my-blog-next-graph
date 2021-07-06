@@ -1,4 +1,4 @@
-import React from "react";
+import React, {useState, useEffect} from "react";
 import { ApolloClient, InMemoryCache, gql } from '@apollo/client';
 
 import ProjectFull from "../../components/ProjectFull.jsx";
@@ -14,11 +14,17 @@ import Layout from '../../components/Layout.jsx';
 
 
 export default function Post( {project, links} ) {
+  const [isMobile, setIsMobile] = useState(false);
+
+  useEffect( () => {
+  // isMobile = window.innerWidth <= 640;
+      setIsMobile( () => window.innerWidth <= 640)
+  }, [])
 
   return <>
     {/* <div className="wrapper flex flex-col justify-items-stretch h-full"> */}
-    <Layout coverImage={project.files.url} toTop={true} backlink='/portfolio/' transparent={true} >
-        <ProjectFull project={project} links={links} />
+    <Layout coverImage={project.files.url} toTop={!isMobile} backlink='/portfolio/' transparent={true} title="Portfolio">
+        <ProjectFull project={project} links={links} isMobile={isMobile} />
     </Layout>
     {/* </div> */}
    </>

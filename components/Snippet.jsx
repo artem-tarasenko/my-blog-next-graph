@@ -23,13 +23,13 @@ export function Snippet( {snippet} ) {
         <div className="wrapper flex flex-col justify-items-stretch h-full my6 py-6">
 
             <section className="blog flex container 2xl mx-auto mb-6">
-                <div className={`${styles.postBody} container ml-16 mr-32 flex-grow flex flex-col`}>
+                <div className={`${styles.postBody} container px-4 lg:ml-16 lg:mr-32 flex-grow flex flex-col w-full`}>
                     <h1>{snippet.title}</h1>
                     <div className="post-links my-4 flex flex-col">
-                        <a href={snippet.repo} className="git my-1 text-lg text-gray-400 flex flex-row items-center">
+                        <a href={snippet.repo} className="git my-1 text-sm lg:text-lg text-gray-400 flex items-center">
                             <GitHubIcon className="mr-2" fontSize='small' />{snippet.repo}
                         </a>
-                        <a href={snippet.example} className="git my-1 text-lg text-gray-400 flex flex-row items-center">
+                        <a href={snippet.example} className="git my-1 text-sm lg:text-lg text-gray-400 flex items-center">
                             <WebIcon className="mr-2" fontSize='small' />{snippet.example}
                         </a>
                     </div>
@@ -37,7 +37,7 @@ export function Snippet( {snippet} ) {
                     {/* <ReactMarkdown>{snippet.content}</ReactMarkdown> */}
                     <div className="post-tags flex flex-row">
                         {
-                            snippet.tags.map(item => <p className={`${styles.snippetTags} mt-8 mx-2 text-lg`}>{item}</p>)
+                            snippet.tags.map(item => <p className={`${styles.snippetTags} mt-8 mx-2 text-sm lg:text-lg`}>{item}</p>)
                         }
                     </div>
                 </div>
@@ -55,13 +55,13 @@ export const SnippetsSideMenu = ( {data} ) => {
       }
     
     return <>
-        <h2 className="px-2">More snippets</h2>
-        <div className="divide-y-2 divide-darkgrey-700 mt-4" >
+        <h2 className="px-2 mx-4 lg:mx-0">More snippets</h2>
+        <div className="divide-y-2 divide-darkgrey-700 mx-4 lg:mx-0 lg:mt-4 mb-8 lg:mb-0" >
             {
                 data.map((item, index) => {
                     if(index < 6) {
                     return <>
-                        <div className="pt-3 w-72 flex flex-col hover:bg-indigo-50 transition-all ease-in-out duration-300">
+                        <div className="pt-3 w-full lg:w-72 flex flex-col hover:bg-indigo-50 transition-all ease-in-out duration-300">
                             <a className="px-2 leading-5 text-sm" href={`/snippets/${item.slug}`}>{item.title}</a>
                             <div className="px-2 flex flex-row divide-x-3 divide-darkgrey-900 py-3">
                                 {

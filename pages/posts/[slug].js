@@ -1,4 +1,4 @@
-import React from "react";
+import React, {useState, useEffect} from "react";
 import { ApolloClient, InMemoryCache, gql } from '@apollo/client';
 import BlogPost from "../../components/Blog/BlogPost.jsx";
 import Layout from '../../components/Layout.jsx';
@@ -20,8 +20,17 @@ const client = new ApolloClient({
 // #########################################################################################
 // #########################################################################################
 function Post( {post} ) {
+
+  const [isMobile, setIsMobile] = useState(false);
+
+  useEffect( () => {
+  // isMobile = window.innerWidth <= 640;
+      setIsMobile( () => window.innerWidth <= 640)
+  }, [])
+
+
   return  <>
-      <Layout coverImage={post.coverImage.url} toTop={true} backlink='/posts/' >
+      <Layout coverImage={post.coverImage.url} toTop={!isMobile} backlink='/posts/' isMobile={isMobile} >
         <BlogPost post={post} />
       </Layout>
   </>
