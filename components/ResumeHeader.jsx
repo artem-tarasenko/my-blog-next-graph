@@ -8,7 +8,7 @@ export default function Heading( {name, subtitle, isMobile} ) {
                 <div className="h-48 container mx-auto px-4 lg:px-64 flex flex-col justify-center">
                     <div className="title flex flex-row justify-between">
                         <h1 className="text-4xl lg:text-6xl">{name}</h1>
-                        <a className={`download-btn flex px-2 py-2 ${styles.downloadButton}`} href="#">
+                        <a className={`download-btn flex px-2 py-2 ${styles.downloadButton}`} href="Resume-Artem-Tarasenko.pdf" download >
                             { !isMobile ? <p className={`group-hover:scale-x-120 ${styles.downloadButtonText}`}>Download</p> : null}
                             <img className={`h-12 group-hover:scale-x-120 ${styles.downloadButtonIcon}`} src="/icons/pdf.png"/>
                         </a>

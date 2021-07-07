@@ -15,6 +15,9 @@ import LinearProgress from '@material-ui/core/LinearProgress';
 
 
 export default function ResumeBlock({resume, isMobile}) {
+
+    const stylesHoverBlue = "hover:text-blue-500 transition ease-in-out duration-300"
+
     return <React.Fragment>
         <div className="resume mx-4 lg:mx-64 my-4 lg:my-8 flex flex-col">
             <div className="personal my-4">
@@ -24,11 +27,21 @@ export default function ResumeBlock({resume, isMobile}) {
                         <img className="rounded-full filter drop-shadow" src={resume.pic.url} />
                     </div>
                     <div className="info ml-8 mt-4">
-                        <div className="flex items-center my-2" ><PhoneAndroidIcon className="mr-2" />      <p className="text-md lg:text-xl">{resume.number}</p></div>
-                        <div className="flex items-center my-2" ><AlternateEmailIcon className="mr-2" />    <p className="text-md lg:text-xl">{resume.email}</p></div>
-                        <div className="flex items-center my-2" ><PersonPinCircleIcon className="mr-2" />   <p className="text-md lg:text-xl">{resume.location}</p></div>
-                        <div className="flex items-center my-2" ><LinkedInIcon className="mr-2" />          <p className="text-md lg:text-xl">{resume.linkedin}</p></div>
-                        <div className="flex items-center my-2" ><GitHubIcon className="mr-2" />            <p className="text-md lg:text-xl">{resume.location}</p></div>
+                        <div className="flex items-center my-2" ><PhoneAndroidIcon className="mr-2" />
+                            <a href={`tel:${resume.number}`} data-rel="external" className={`text-md lg:text-xl text-gray-600 ${stylesHoverBlue}`}>{resume.number}</a>
+                        </div>
+                        <div className="flex items-center my-2" ><AlternateEmailIcon className="mr-2" />    
+                            <a href={`mailto:${resume.email}`} className={`text-md lg:text-xl text-gray-600 ${stylesHoverBlue}`}>{resume.email}</a>
+                        </div>
+                        <div className="flex items-center my-2" ><PersonPinCircleIcon className="mr-2" />
+                            <p className={`text-md lg:text-xl text-gray-600 ${stylesHoverBlue}`}>{resume.location}</p>
+                        </div>
+                        <div className="flex items-center my-2" ><LinkedInIcon className="mr-2" />          
+                            <a href={resume.linkedin} target="_blank" rel="noopener noreferrer" className={`text-md lg:text-xl text-gray-600 ${stylesHoverBlue}`}>{resume.linkedin}</a>
+                        </div>
+                        <div className="flex items-center my-2" ><GitHubIcon className="mr-2" />            
+                            <a href={resume.github} target="_blank" rel="noopener noreferrer" className={`text-md lg:text-xl text-gray-600 ${stylesHoverBlue}`}>{resume.github}</a>
+                        </div>
                     </div>
                 </div>
             </div>

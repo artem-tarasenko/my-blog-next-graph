@@ -64,6 +64,7 @@ export async function getStaticProps() {
                 name
                 number
                 subtitle
+                github
                 summary {
                   text
                 }
