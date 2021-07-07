@@ -31,16 +31,16 @@ export default function ResumeBlock({resume, isMobile}) {
                             <a href={`tel:${resume.number}`} data-rel="external" className={`text-md lg:text-xl text-gray-600 ${stylesHoverBlue}`}>{resume.number}</a>
                         </div>
                         <div className="flex items-center my-2" ><AlternateEmailIcon className="mr-2" />    
-                            <a href={`mailto:${resume.email}`} className={`text-md lg:text-xl text-gray-600 ${stylesHoverBlue}`}>{resume.email}</a>
+                            <a href={`mailto:${resume.email}`} className={`text-md max-w-full lg:text-xl text-gray-600 ${stylesHoverBlue}`}>{resume.email}</a>
                         </div>
                         <div className="flex items-center my-2" ><PersonPinCircleIcon className="mr-2" />
                             <p className={`text-md lg:text-xl text-gray-600 ${stylesHoverBlue}`}>{resume.location}</p>
                         </div>
                         <div className="flex items-center my-2" ><LinkedInIcon className="mr-2" />          
-                            <a href={resume.linkedin} target="_blank" rel="noopener noreferrer" className={`text-md lg:text-xl text-gray-600 ${stylesHoverBlue}`}>{resume.linkedin}</a>
+                            <a href={resume.linkedin} target="_blank" rel="noopener noreferrer" className={`text-md max-w-full lg:text-xl text-gray-600 ${stylesHoverBlue}`}>{resume.linkedin}</a>
                         </div>
                         <div className="flex items-center my-2" ><GitHubIcon className="mr-2" />            
-                            <a href={resume.github} target="_blank" rel="noopener noreferrer" className={`text-md lg:text-xl text-gray-600 ${stylesHoverBlue}`}>{resume.github}</a>
+                            <a href={resume.github} target="_blank" rel="noopener noreferrer" className={`text-md max-w-full lg:text-xl text-gray-600 ${stylesHoverBlue}`}>{resume.github}</a>
                         </div>
                     </div>
                 </div>

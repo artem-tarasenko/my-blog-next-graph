@@ -18,7 +18,7 @@ export default function BlogItemLink( {item} ) {
                 <div className="blog-post-more flex justify-between mt-4 align-center">
                     
                     <Link href={`/${props.category}/[slug]`} as={`/${props.category}/${slug}`}>
-                        <a className="border-2 border-gray-200 hover:border-gray-600 transition-all duration-200 ease-is rounded-sm px-5 py-1">READ</a>
+                        <a className="border-2 border-gray-200 lg:hover:border-gray-600 transition-all duration-200 ease-is rounded-sm px-5 py-1">READ</a>
                     </Link>{' '}
                     
                     <div className="logos flex flex-row flex-wrap">

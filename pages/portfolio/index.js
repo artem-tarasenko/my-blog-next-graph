@@ -22,7 +22,7 @@ function Index( {projects, intros} ) {
     }, [])
 
     return  <React.Fragment>
-                <Layout intro={intros[0]} padding={true} footerBackground={true} isMobile={isMobile} title="Portfolio">
+                <Layout intro={intros[0]} padding={true} footerBackground={true} isMobile={isMobile} title="Portfolio" bg={true}>
                         {projects.length > 1 ? <Project source={projects} test={"testing string"} category={"portfolio"} /> : <p>Loading...</p>}
                 </Layout>
             </React.Fragment>
@@ -54,6 +54,7 @@ export async function getStaticProps() {
                 createdAt
                 excerpt
                 tags
+                publishedAt
                 files {
                     url
                 }

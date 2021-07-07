@@ -12,5 +12,96 @@
     border-left: 1px solid rgb(226, 226, 226);
     border-right: 2px solid darkgray;
     border-bottom: 2px solid darkgray;
+}
 
+.postBody {
+
+}
+
+.postBody h1 {
+    font-size: 4rem;
+    line-height: 4rem;
+    margin-bottom: 2rem;
+}
+
+.postBody h2 {
+    font-size: 2rem;
+    line-height: 2.5rem;
+    margin: 1.5rem 0 1rem;
+}
+
+.postBody h3 {
+    font-size: 1.5rem;
+    line-height: 2rem;
+    margin: 1rem 0 0.7rem;
+}
+
+.postBody img {
+    border-radius: 5px;
+    padding: 1rem;
+    /* padding: 0 2rem; */
+}
+
+.postBody ol, .postBody ul {
+    margin: 1rem 0 1rem 3rem;
+}
+
+.postBodyol li {
+    list-style-type: circle;
+}
+
+.postBodyul li {
+    list-style-type: decimal;
+}
+
+.postBodyul li div {
+    margin: 0 0.5rem;
+}
+
+.postBody strong {
+    color: rgb(75, 85, 99);
+}
+
+.postBody p {
+    margin: 1rem 0;
+}
+
+.postBodyMobile {
+
+}
+
+.postBody.postBodyMobile h1 {
+    font-size: 2.5rem;
+    line-height: 2.3rem;
+    margin-bottom: 1.5rem;
+}
+
+.postBody.postBodyMobile h2 {
+    font-size: 1.5rem;
+    line-height: 1.5rem;
+    margin: 1.5rem 0 1rem;
+}
+
+.postBody.postBodyMobile h3 {
+    font-size: 1.3rem;
+    line-height: 1.3rem;
+    margin: 1rem 0 0.7rem;
+}
+
+.postBody.postBodyMobile img {
+    border-radius: 5px;
+    margin: 0;
+    /* padding: 0 2rem; */
+}
+
+.postBody.postBodyMobile strong {
+    color: rgb(75, 85, 99);
+}
+
+.postBody.postBodyMobile ol, .postBody.postBodyMobile ul {
+    margin: 1rem 0 1rem 1.5rem;
+}
+
+.postBody.postBodyMobile .linksMobile {
+    margin: 0.5rem 1rem;
 }

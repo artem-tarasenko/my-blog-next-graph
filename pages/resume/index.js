@@ -24,7 +24,7 @@ export default function Resume( {resume = {}} ) {
     return (
 
             <React.Fragment>
-              <Layout isResume={true} name={resume.name} subtitle={resume.subtitle} footerBackground={true} isMobile={isMobile} title="Resume">
+              <Layout isResume={true} name={resume.name} subtitle={resume.subtitle} footerBackground={true} isMobile={isMobile} title="Resume" bg={true}>
 
                 <div className="wrapper flex flex-col justify-items-stretch h-full">
                     

@@ -23,7 +23,7 @@ export default function Post( {project, links} ) {
 
   return <>
     {/* <div className="wrapper flex flex-col justify-items-stretch h-full"> */}
-    <Layout coverImage={project.files.url} toTop={!isMobile} backlink='/portfolio/' transparent={true} title="Portfolio">
+    <Layout coverImage={project.files.url} toTop={!isMobile} backlink='/portfolio/' transparent={true} title="Portfolio" bg={false}>
         <ProjectFull project={project} links={links} isMobile={isMobile} />
     </Layout>
     {/* </div> */}

@@ -30,8 +30,8 @@ function Post( {post} ) {
 
 
   return  <>
-      <Layout coverImage={post.coverImage.url} toTop={!isMobile} backlink='/posts/' isMobile={isMobile} >
-        <BlogPost post={post} />
+      <Layout coverImage={post.coverImage.url} toTop={!isMobile} backlink='/posts/' isMobile={isMobile} bg={false}>
+        <BlogPost post={post} isMobile={isMobile} />
       </Layout>
   </>
 }

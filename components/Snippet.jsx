@@ -1,29 +1,33 @@
-import React from "react";
+import React, {useEffect} from "react";
 import GitHubIcon from '@material-ui/icons/GitHub';
 import WebIcon from '@material-ui/icons/Web';
 import ReactMarkdown from 'react-markdown';
-// import Prism from "prismjs";
+import Prism from "prismjs";
 import parse from 'html-react-parser';
 
 import styles from "./Snippet.module.css"
 
 
 //  #############     //BODY     ###############################################
-export function Snippet( {snippet} ) {
-    // var result = md.render(snippet.content);
-    // console.log(snippet.tags)
-
-    // useEffect(() => {
-    //     if (typeof window !== 'undefined') {
-    //         Prism.highlightAll();
-    //     }
-    // }, []);
+export function Snippet( {snippet, isMobile} ) {
+    
+    useEffect( () => {
+        const items = document.querySelectorAll("pre");
+        items.forEach( item => {
+            const parentClass = item.parentElement.classList[0];
+            item.classList.add(`language-${parentClass}`)
+        });
+    
+        if (typeof window !== 'undefined') {
+            Prism.highlightAll();
+        }
+    }, [])
 
     return <>
         <div className="wrapper flex flex-col justify-items-stretch h-full my6 py-6">
 
             <section className="blog flex container 2xl mx-auto mb-6">
-                <div className={`${styles.postBody} container px-4 lg:ml-16 lg:mr-32 flex-grow flex flex-col w-full`}>
+                <div className={`${styles.postBody} ${isMobile ? styles.postBodyMobile : ''} container px-4 lg:ml-16 lg:mr-32 flex-grow flex flex-col w-full`}>
                     <h1>{snippet.title}</h1>
                     <div className="post-links my-4 flex flex-col">
                         <a href={snippet.repo} className="git my-1 text-sm lg:text-lg text-gray-400 flex items-center">
@@ -61,7 +65,7 @@ export const SnippetsSideMenu = ( {data} ) => {
                 data.map((item, index) => {
                     if(index < 6) {
                     return <>
-                        <div className="pt-3 w-full lg:w-72 flex flex-col hover:bg-indigo-50 transition-all ease-in-out duration-300">
+                        <div className="pt-3 w-full lg:w-72 flex flex-col lg:hover:bg-indigo-50 transition-all ease-in-out duration-300">
                             <a className="px-2 leading-5 text-sm" href={`/snippets/${item.slug}`}>{item.title}</a>
                             <div className="px-2 flex flex-row divide-x-3 divide-darkgrey-900 py-3">
                                 {

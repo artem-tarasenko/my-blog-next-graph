@@ -12,13 +12,13 @@ function BlogItemLeading( props ) {
     return <React.Fragment>
         <div className={`${styles.blogLead} w-full py-6 flex flex-col lg:flex-row mt-8`}>
             <div className="flex flex-col justify-start w-full lg:w-1/2 place-content-start">
-                <p className="date font-thin text-gray-400 block">{item.date}</p>
+                <p className="date font-thin text-gray-400 block text-right lg:text-left">Latest post: {item.date}</p>
                 <Link href={`/${props.category}/[slug]`} as={`/${props.category}/${item.slug}`}>
-                    <h1 className={`${ !props.isMobile ? styles.titleWide : '' } h1 z-50 mb-4 text-2xl lg:text-3xl font-serif font-light transform transition-all duration-300 ease-in-out hover:-translate-x-1 cursor-pointer hover:text-gray-700`}>{item.title}</h1>
+                    <h1 className={`${ !props.isMobile ? styles.titleWide : '' } h1 z-50 mb-4 text-2xl lg:text-3xl font-serif font-light transform transition-all duration-300 ease-in-out lg:hover:-translate-x-1 cursor-pointer lg:hover:text-gray-700`}>{item.title}</h1>
                 </Link>
                 <p className="mt-4 block">{item.excerpt}</p>
                 { !props.isMobile ? <Link href={`/${props.category}/[slug]`} as={`/${props.category}/${item.slug}`}>
-                    <a className={`${styles.blogLeadButton} mt-4 text-gray-400 hover:text-gray-700 transition-all duration-200 ease-is rounded-sm py-2 flex`}>
+                    <a className={`${styles.blogLeadButton} mt-4 text-gray-400 lg:hover:text-gray-700 transition-all duration-200 ease-is rounded-sm py-2 flex`}>
                         <MenuBookIcon className={`${styles.blogLeadButtonIcon} self-center mr-2`} /><p>READ</p></a>
                 </Link> : null}
             </div>
@@ -51,7 +51,7 @@ function BlogItemShort( props ) {
                     <div className="flex flex-col">
                         <Link href={`/${props.category}/[slug]`} as={`/${props.category}/${item.slug}`}>
                             <a className="h1 px-6 py-2 text-xl lg:-ml-12 lg:pl-14 lg:py-6 lg:pr-12 bg-gray-200 text-gray-500 lg:text-2xl rounded-b-md 
-                                            hover:shadow-lg hover:scale-105 hover:bg-gray-200 origin-top-left transform font-serif transition-all ease-in-out duration-300">
+                                            lg:hover:shadow-lg lg:hover:scale-105 lg:hover:bg-gray-200 origin-top-left transform font-serif transition-all ease-in-out duration-300">
                                 {item.title}</a>
                         </Link>
                         <p className="m-0 -mt-2 p-4 lg:p-0 lg:mt-2 lg:ml-4 text-right text-gray-500 text-md lg:text-lg border-2 lg:border-0 rounded-b-md">{item.excerpt}</p>

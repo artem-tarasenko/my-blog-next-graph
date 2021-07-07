@@ -8,11 +8,19 @@ import styles from "./Project.module.css"
 
 export default function Project(props) {
 
+
+
+    const sortedArray = props.source.slice().sort( (a,b) => {
+        const date1 = new Date(a.publishedAt);
+        const date2 = new Date(b.publishedAt);
+        return date2 - date1;
+    } );
+
     return  <React.Fragment>
 
                         <div className="flex flex-column mb-6 mt-8">
                             <div className="blog-items flex flex-row flex-wrap justify-between px-8 lg:p-0">
-                                {props.source.map((item, index) => <>
+                                {sortedArray.map((item, index) => <>
                                     
                                     <div className="flex flex-col items-center w-full lg:w-1/2 my-6 lg:my-0 lg:px-8 lg:py-4">
                                         <Link href={`/${props.category}/[slug]`} as={`/${props.category}/${item.slug}`} className=" ">
@@ -59,7 +67,7 @@ const ProjectItem = (props) => {
                 <div className="blog-post-more flex justify-between mt-4 align-center">
 
                     <Link href={`/${props.category}/[slug]`} as={`/${props.category}/${slug}`}>
-                        <a className="border-2 border-gray-200 hover:border-gray-600 transition-all duration-200 ease-is rounded-sm px-5 py-1">READ</a>
+                        <a className="border-2 border-gray-200 lg:hover:border-gray-600 transition-all duration-200 ease-is rounded-sm px-5 py-1">READ</a>
                     </Link>{' '}
 
                     <div className="logos flex flex-row flex-wrap">

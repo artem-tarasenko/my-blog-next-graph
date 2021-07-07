@@ -2,11 +2,6 @@ import React, {useState, useEffect} from "react";
 import { ApolloClient, InMemoryCache, gql } from '@apollo/client';
 import {Snippet, SnippetsSideMenu} from "../../components/Snippet.jsx";
 import Layout from '../../components/Layout.jsx';
-import Prism from "prismjs";
-
-
-//! REMOVE THIS LINE LATER
-// process.env['NODE_TLS_REJECT_UNAUTHORIZED'] = 0;
 
 
 
@@ -23,12 +18,12 @@ function Post( {data, menuData} ) {
 
 
     return <>
-      <Layout toTop={!isMobile} backlink="/snippets/">
+      <Layout toTop={!isMobile} backlink="/snippets/" bg={false}>
         <div className="flex flex-col lg:flex-row lg:flex-nowrap">
-          <div className="sidemenu mt-8 order-last">
+          <div className="sidemenu mt-8 order-last lg:order-first">
             <SnippetsSideMenu data={menuData} />
           </div>
-          <Snippet snippet={data} />
+          <Snippet snippet={data} isMobile={isMobile} />
         </div>
       </Layout>
     </>

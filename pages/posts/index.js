@@ -5,6 +5,7 @@ import BlogLayout from "../../components/Blog/BlogLayout.jsx";
 import Layout from '../../components/Layout.jsx';
 // import { request, GraphQLClient, gql  } from 'graphql-request';
 import { ApolloClient, InMemoryCache, gql } from '@apollo/client';
+import { ContactsOutlined } from "@material-ui/icons";
 
 
 
@@ -61,11 +62,20 @@ function Index( {posts, intros} ) {
     useEffect( () => {
     // isMobile = window.innerWidth <= 640;
         setIsMobile( () => window.innerWidth <= 640)
-    }, [])
+    }, []);
+
+    // .slice() array before sorting to make a copy of it, otherwise it will throw an error
+    //something about changing array in a strict mode that is being frozen
+    const sortedArray = posts.slice().sort( (a,b) => {
+        const date1 = new Date(a.date);
+        const date2 = new Date(b.date);
+
+        return date1 - date2;
+    });    
     
     return  <React.Fragment>
-                <Layout intro={intros[0]} padding={true} footerBackground={true} isMobile={isMobile} title="Blog">
-                    {posts.length > 1 ? <BlogLayout source={posts} category={"posts"} isMobile={isMobile} /> : <p>Loading...</p>}
+                <Layout intro={intros[0]} padding={true} footerBackground={true} isMobile={isMobile} title="Blog" bg={true}>
+                    {posts.length > 0 ? <BlogLayout source={sortedArray} category={"posts"} isMobile={isMobile} /> : <p>Loading...</p>}
                 </Layout>
             </React.Fragment>
 }

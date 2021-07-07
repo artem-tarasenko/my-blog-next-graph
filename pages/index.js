@@ -10,7 +10,7 @@ function Index() {
     
     return  <React.Fragment>
 
-            <Layout transparent={true} footerBackground={false} logoColor="text-gray-100" center={true} >
+            <Layout transparent={true} footerBackground={false} logoColor="text-gray-100" center={true} bg={true}>
                 <div className="flex flex-col justify-center items-center w-3/4 lg:w-2/3 mx-auto lg:flex-grow">
                     <h4 className="upper-title text-gray-600 text-xl lg:text-4xl self-end">Front-end developer</h4>
                     <h1 className="upper-title text-gray-600 text-3xl lg:text-8xl whitespace-nowrap">ARTEM TARASENKO</h1>

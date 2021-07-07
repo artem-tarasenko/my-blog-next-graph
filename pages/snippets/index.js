@@ -128,7 +128,6 @@ function Index( {snippets, filter, allTags, defaultFilter, intro} ) {
     
     const snipTitles = content.snippets.map(item => item.title);
 
-
     useEffect( () => {
     // isMobile = window.innerWidth <= 640;
         setIsMobile( () => window.innerWidth <= 640)
@@ -149,7 +148,7 @@ function Index( {snippets, filter, allTags, defaultFilter, intro} ) {
   
     return  <React.Fragment>
 
-                <Layout intro={intro} padding={false} footerBackground={true}  isMobile={isMobile} title="Snippets" >
+                <Layout intro={intro} padding={false} footerBackground={true}  isMobile={isMobile} title="Snippets" bg={true}>
                     <div className="flex flex-column my-6 flex-col w-full">
                         <div className="lg:px-64 px-4">
                             <div className="tags-filter flex flex-row mt-2 flex-wrap">
