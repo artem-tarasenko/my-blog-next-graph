@@ -8,8 +8,6 @@ import styles from "./Project.module.css"
 
 export default function Project(props) {
 
-
-
     const sortedArray = props.source.slice().sort( (a,b) => {
         const date1 = new Date(a.publishedAt);
         const date2 = new Date(b.publishedAt);

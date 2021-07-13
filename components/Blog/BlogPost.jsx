@@ -27,7 +27,7 @@ function BlogPost( {post, isMobile} ) {
                 <div className="wrapper flex flex-col justify-items-stretch h-full">
 
                     <section className="blog flex container 2xl mx-auto my-6 flex-grow">
-                        <div className={`container mx-4 lg:mx-64 ${styles.post} ${isMobile ? styles.postMobile : ''}`}>
+                        <div className={`container mx-4 lg:mx-0 lg:px-64 ${styles.post} ${isMobile ? styles.postMobile : ''}`}>
                             <h1>{post.title}</h1>
                             {parse(content.html)}
                         </div>

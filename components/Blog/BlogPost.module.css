@@ -55,8 +55,9 @@
     margin: 1rem 0;
 }
 
-.postMobile {
-
+.postMobile p a {
+    color: #6055ee;
+    font-weight: 500;
 }
 
 .post.postMobile h1 {
@@ -75,6 +76,11 @@
     font-size: 1.3rem;
     line-height: 1.3rem;
     margin: 1rem 0 0.7rem;
+}
+
+.post.postMobile pre {
+    border-radius: 5px;
+    margin: 1rem 0.5rem;
 }
 
 .post.postMobile img {

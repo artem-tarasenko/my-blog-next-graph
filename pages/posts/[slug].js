@@ -30,7 +30,7 @@ function Post( {post} ) {
 
 
   return  <>
-      <Layout coverImage={post.coverImage.url} toTop={!isMobile} backlink='/posts/' isMobile={isMobile} bg={false}>
+      <Layout coverImage={post.coverImage.url} toTop={!isMobile} backlink='/posts/' isMobile={isMobile} bg={false} title="blog">
         <BlogPost post={post} isMobile={isMobile} />
       </Layout>
   </>

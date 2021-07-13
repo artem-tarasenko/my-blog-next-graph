@@ -43,9 +43,13 @@ function BlogItemShort( props ) {
             <div className="item-content px-2 pb-10 pt-3">
                 <div className="flex flex-col lg:flex-row group">
                     <div className="flex flex-col flex-shrink-0">
-                        <img className={`${ !props.isMobile ? styles.imgClipped : ''} z-10 h-20 lg:h-48 lg:w-auto object-cover lg:object-none lg:transform rounded-t-md lg:rounded-none`} src={item.coverImage.url} />
+                        <img className={`${ !props.isMobile ? styles.imgClipped : ''} z-10 h-20 lg:h-48 lg:w-80 object-cover lg:transform rounded-t-md lg:rounded-none`} src={item.coverImage.url} />
                         <div className="logos flex flex-row flex-nowrap lg:pl-8 justify-center divide-x-8 divide-transparent hidden lg:inline-flex">
-                            <p className="text-gray-500">React</p><p className="text-gray-500">Heroku</p><p className="text-gray-500">Vercel</p>
+                            
+                            {item.tags 
+                                ? item.tags.map( item => <p className="text-gray-500">{item}</p>)
+                                : null
+                            }
                         </div>
                     </div>
                     <div className="flex flex-col">
@@ -74,7 +78,7 @@ function BlogItemLink( props ) {
             <div className="item-content px-2 py-4 lg:pb-10 lg:pt-3 w-full">
                 <Link href={`/${props.category}/[slug]`} as={`/${props.category}/${item.slug}`}>
                     <div className="flex cursor-pointer">
-                        <img className={`${styles.imgClipped} z-10 h-24 cursor-pointer filter drop-shadow-lg hidden lg:inline-flex`} src={item.coverImage?.url ?? "#"} />
+                        <img className={`${styles.imgClipped} z-10 h-24 lg:w-48 lg:object-cover cursor-pointer filter drop-shadow-lg hidden lg:inline-flex`} src={item.coverImage?.url ?? "#"} />
                         <div className={`${styles.blogLink} flex flex-col bg-gray-100 -ml-8 pl-6 pr-2 lg:-ml-12 lg:pl-20 py-4 lg:pr-4 shadow-lg justify-center w-full relative`}>
                             <div className={`${styles.blogLinkTitle} h-full flex flex-col justify-center`}>
                                 <a className="h1 text-gray-500 text-xl leading-5 font-serif">{item.title}</a>

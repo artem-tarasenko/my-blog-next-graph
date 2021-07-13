@@ -24,7 +24,7 @@ function ProjectFull( {project, links, isMobile} ) {
         
             <React.Fragment>
                     <section className="blog flex container 2xl mx-auto lg:my-6 flex-grow">
-                        <div className={`${isMobile ? styles.postMobile : ''} ${styles.post} h-full mx-4 lg:mx-64`}>
+                        <div className={`${isMobile ? styles.postMobile : ''} ${styles.post} h-full px-4 lg:px-0 lg:mx-64 w-screen`}>
                             <h1 className="my-4">{project.title}</h1>
                             {parse(project.content.html)}
                             <div className="flex flex-wrap lg:mx-4 justify-between lg:justify-start my-6 lg:my-0">

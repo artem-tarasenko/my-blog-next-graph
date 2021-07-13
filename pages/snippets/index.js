@@ -47,7 +47,7 @@ export async function getStaticProps() {
 
     let newArr = [];
     tagsArray.forEach(item => newArr.push({tag: item, isActive: true, isSelected: false}));
-    const initialContent = { snippets: snippets, filter: newArr, allTags: tagsArray, defaultFilter: newArr, intro: intros[0] }
+    const initialContent = { snippets: snippets, filter: newArr, defaultFilter: newArr, intro: intros[0] }
 
     return { props: initialContent};
   }
@@ -122,11 +122,11 @@ function reducer(content, action) {
 // ###############################################################npm
 // ###############################################################
 
-function Index( {snippets, filter, allTags, defaultFilter, intro} ) {
-    const [content, dispatch] = useReducer(reducer, {snippets, filter, allTags, defaultFilter, allSnippets: [...snippets]});
+function Index( {snippets, filter, defaultFilter, intro} ) {
+    const [content, dispatch] = useReducer(reducer, {snippets, filter, defaultFilter, allSnippets: [...snippets]});
     const [isMobile, setIsMobile] = useState(false);
     
-    const snipTitles = content.snippets.map(item => item.title);
+    // const snipTitles = content.snippets.map(item => item.title);
 
     useEffect( () => {
     // isMobile = window.innerWidth <= 640;
@@ -134,7 +134,6 @@ function Index( {snippets, filter, allTags, defaultFilter, intro} ) {
     }, [])
 
     function handleFiltering(e) {
-
         if(e.target.classList.contains("selected")) {
             // console.log("Disabling filter..");
             dispatch({type: ACTIONS.REMOVE_FILTER, payload: {tag: e.target.value}});
