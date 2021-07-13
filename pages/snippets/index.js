@@ -1,7 +1,6 @@
 import React, { useReducer, useEffect, useState } from "react";
 import { ApolloClient, InMemoryCache, gql } from '@apollo/client';
 import Layout from '../../components/Layout.jsx';
-// import IntroBlock from "../../components/IntroBlock.jsx";
 import styles from "./../../components/IntroBlock.module.css";
 
 
@@ -125,8 +124,6 @@ function reducer(content, action) {
 function Index( {snippets, filter, defaultFilter, intro} ) {
     const [content, dispatch] = useReducer(reducer, {snippets, filter, defaultFilter, allSnippets: [...snippets]});
     const [isMobile, setIsMobile] = useState(false);
-    
-    // const snipTitles = content.snippets.map(item => item.title);
 
     useEffect( () => {
     // isMobile = window.innerWidth <= 640;
@@ -169,7 +166,7 @@ function Index( {snippets, filter, defaultFilter, intro} ) {
                         </div>
                     </div>
                 </Layout>
-                
+
             </React.Fragment>
 }               
 
