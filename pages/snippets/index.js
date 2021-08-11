@@ -142,6 +142,8 @@ function Index( {snippets, filter, defaultFilter, intro} ) {
             return
         };
     }
+
+    console.log("Snippet", snippets);
   
     return  <React.Fragment>
                 <Head>

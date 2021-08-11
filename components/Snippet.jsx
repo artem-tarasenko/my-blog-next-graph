@@ -1,7 +1,4 @@
 import React, {useEffect} from "react";
-import GitHubIcon from '@material-ui/icons/GitHub';
-import WebIcon from '@material-ui/icons/Web';
-import ReactMarkdown from 'react-markdown';
 import Prism from "prismjs";
 import parse from 'html-react-parser';
 
@@ -23,25 +20,32 @@ export function Snippet( {snippet, isMobile} ) {
         }
     }, [])
 
-    return <>
-        <div className="wrapper flex flex-col justify-items-stretch h-full my6 py-6">
+    console.log("SNIP", snippet)
 
-            <section className="blog flex container 2xl mx-auto mb-6">
-                <div className={`${styles.postBody} ${isMobile ? styles.postBodyMobile : ''} container px-4 lg:ml-16 lg:mr-32 flex-grow flex flex-col w-full`}>
+    return <>
+        <div className="wrapper flex flex-col flex-grow-0 justify-items-stretch h-full my6 py-6">
+
+            <section className="blog flex container 2xl max-w-6xl mx-auto mb-6">
+                <div className={`${styles.postBody} ${isMobile ? styles.postBodyMobile : ''} container pl-4 lg:ml-16 flex flex-col w-full`}>
                     <h1>{snippet.title}</h1>
                     <div className="post-links my-4 flex flex-col">
-                        <a href={snippet.repo} className="git my-1 text-sm lg:text-lg text-gray-400 flex items-center">
-                            <GitHubIcon className="mr-2" fontSize='small' />{snippet.repo}
-                        </a>
-                        <a href={snippet.example} className="git my-1 text-sm lg:text-lg text-gray-400 flex items-center">
-                            <WebIcon className="mr-2" fontSize='small' />{snippet.example}
-                        </a>
+                        { snippet.repo.length > 0 ?
+                            <a href={snippet.repo} className="git my-1 text-sm lg:text-lg text-gray-400 flex items-center">
+                                
+                                <img className="snippet-icon p-0 pr-2" src="/icons/github.png" alt="" />{snippet.repo}
+                            </a>
+                            : null
+                        }
+                        { snippet.example.length > 0 &&
+                            <a href={snippet.example} className="git my-1 text-sm lg:text-lg text-gray-400 flex items-center">
+                                <img className="snippet-icon p-0 pr-2" src="/icons/codesandbox.png" alt="" />{snippet.example}
+                            </a>
+                        } 
                     </div>
                     {parse(snippet.content.html)}
-                    {/* <ReactMarkdown>{snippet.content}</ReactMarkdown> */}
                     <div className="post-tags flex flex-row">
                         {
-                            snippet.tags.map(item => <p className={`${styles.snippetTags} mt-8 mx-2 text-sm lg:text-lg`}>{item}</p>)
+                            snippet.tags.map( (item, index) => <p key={index} className={`${styles.snippetTags} mt-8 mx-2 text-sm lg:text-lg`}>{item}</p> )
                         }
                     </div>
                 </div>
@@ -72,17 +76,11 @@ export const SnippetsSideMenu = ( {data} ) => {
                                     item.tags.map( tag => <p className="text-xs mr-2">{shortenString(tag, 100)}</p>)
                                 }
                             </div>
-                            {/* <p className="text-sm">{shortenString(item.excerpt, 100)}</p> */}
                         </div>
-                        
                     </>
                     }
                 })
             }
         </div>
-        {/* <div className="px-2 mt-8 uppercase ">
-            
-            <Link href="/snippets" className="">Back to list</Link>
-        </div> */}
     </>
 }

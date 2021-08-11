@@ -65,3 +65,7 @@ html, body, #__next {
   .menu-item.active {
     color: slateblue;
   }
+
+  section.blog pre {
+    max-width: 100%;
+  }
