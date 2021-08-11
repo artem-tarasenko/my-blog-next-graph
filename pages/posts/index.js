@@ -5,8 +5,6 @@ import Layout from '../../components/Layout.jsx';
 import { ApolloClient, InMemoryCache, gql } from '@apollo/client';
 
 
-
-
 // ###############################################################
 // ###############################################################
 const client = new ApolloClient({
