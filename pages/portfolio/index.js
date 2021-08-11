@@ -1,5 +1,5 @@
 import React, { useState, useEffect} from "react";
-
+import Head from 'next/head';
 import Project from "../../components/Project.jsx";
 import Layout from '../../components/Layout.jsx';
 import { ApolloClient, InMemoryCache, gql } from '@apollo/client';
@@ -22,6 +22,17 @@ function Index( {projects, intros} ) {
     }, [])
 
     return  <React.Fragment>
+                <Head>
+                  <title>AT Blog</title>
+                  <meta name="viewport" content="initial-scale=1.0, width=device-width" />
+                  <meta property="og:title" content="AT Blog" key="title" />
+                  <meta name="description" content="Personal website with blog, resume and portfolio." />
+                  <meta name="keywords" content="Frontend, developer, blog, artem, tarasenko, javascript, snippets, react, vercel, next, graphcms, web, dev, resume" />
+                  <meta name="author" content="Artem Tarasenko" />
+                  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+                  <link rel="icon" href="/favicon.ico" type="image/x-icon" />
+                    <link rel="shortcut icon" href="/favicon.ico" type="image/x-icon" />
+                </Head>
                 <Layout intro={intros[0]} padding={true} footerBackground={true} isMobile={isMobile} title="Portfolio" bg={true}>
                         {projects.length > 1 ? <Project source={projects} test={"testing string"} category={"portfolio"} /> : <p>Loading...</p>}
                 </Layout>

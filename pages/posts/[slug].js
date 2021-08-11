@@ -2,6 +2,7 @@ import React, {useState, useEffect} from "react";
 import { ApolloClient, InMemoryCache, gql } from '@apollo/client';
 import BlogPost from "../../components/Blog/BlogPost.jsx";
 import Layout from '../../components/Layout.jsx';
+import Head from 'next/head';
 
 //! REMOVE THIS LINE LATER
 // process.env['NODE_TLS_REJECT_UNAUTHORIZED'] = 0;
@@ -30,6 +31,17 @@ function Post( {post} ) {
 
 
   return  <>
+      <Head>
+          <title>AT Blog</title>
+          <meta name="viewport" content="initial-scale=1.0, width=device-width" />
+          <meta property="og:title" content="AT Blog" key="title" />
+          <meta name="description" content="Personal website with blog, resume and portfolio." />
+          <meta name="keywords" content="Frontend, developer, blog, artem, tarasenko, javascript, snippets, react, vercel, next, graphcms, web, dev, resume" />
+          <meta name="author" content="Artem Tarasenko" />
+          <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+          <link rel="icon" href="/favicon.ico" type="image/x-icon" />
+                    <link rel="shortcut icon" href="/favicon.ico" type="image/x-icon" />
+      </Head>
       <Layout coverImage={post.coverImage.url} toTop={!isMobile} backlink='/posts/' isMobile={isMobile} bg={false} title="blog">
         <BlogPost post={post} isMobile={isMobile} />
       </Layout>

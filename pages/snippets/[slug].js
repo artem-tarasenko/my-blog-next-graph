@@ -1,4 +1,5 @@
 import React, {useState, useEffect} from "react";
+import Head from 'next/head';
 import { ApolloClient, InMemoryCache, gql } from '@apollo/client';
 import {Snippet, SnippetsSideMenu} from "../../components/Snippet.jsx";
 import Layout from '../../components/Layout.jsx';
@@ -18,6 +19,17 @@ function Post( {data, menuData} ) {
 
 
     return <>
+      <Head>
+          <title>AT Blog</title>
+          <meta name="viewport" content="initial-scale=1.0, width=device-width" />
+          <meta property="og:title" content="AT Blog" key="title" />
+          <meta name="description" content="Personal website with blog, resume and portfolio." />
+          <meta name="keywords" content="Frontend, developer, blog, artem, tarasenko, javascript, snippets, react, vercel, next, graphcms, web, dev, resume" />
+          <meta name="author" content="Artem Tarasenko" />
+          <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+          <link rel="icon" href="/favicon.ico" type="image/x-icon" />
+          <link rel="shortcut icon" href="/favicon.ico" type="image/x-icon" />
+      </Head>
       <Layout toTop={!isMobile} backlink="/snippets/" bg={false}>
         <div className="flex flex-col lg:flex-row lg:flex-nowrap">
           <div className="sidemenu mt-8 order-last lg:order-first">

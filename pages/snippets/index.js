@@ -1,4 +1,5 @@
 import React, { useReducer, useEffect, useState } from "react";
+import Head from 'next/head';
 import { ApolloClient, InMemoryCache, gql } from '@apollo/client';
 import Layout from '../../components/Layout.jsx';
 import styles from "./../../components/IntroBlock.module.css";
@@ -143,7 +144,17 @@ function Index( {snippets, filter, defaultFilter, intro} ) {
     }
   
     return  <React.Fragment>
-
+                <Head>
+                    <title>AT Blog</title>
+                    <meta name="viewport" content="initial-scale=1.0, width=device-width" />
+                    <meta property="og:title" content="AT Blog" key="title" />
+                    <meta name="description" content="Personal website with blog, resume and portfolio." />
+                    <meta name="keywords" content="Frontend, developer, blog, artem, tarasenko, javascript, snippets, react, vercel, next, graphcms, web, dev, resume" />
+                    <meta name="author" content="Artem Tarasenko" />
+                    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+                    <link rel="icon" href="/favicon.ico" type="image/x-icon" />
+                    <link rel="shortcut icon" href="/favicon.ico" type="image/x-icon" />
+                </Head>
                 <Layout intro={intro} padding={false} footerBackground={true}  isMobile={isMobile} title="Snippets" bg={true}>
                     <div className="flex flex-column my-6 flex-col w-full">
                         <div className="lg:px-64 px-4">

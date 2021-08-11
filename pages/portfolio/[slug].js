@@ -1,9 +1,7 @@
 import React, {useState, useEffect} from "react";
 import { ApolloClient, InMemoryCache, gql } from '@apollo/client';
-
+import Head from 'next/head';
 import ProjectFull from "../../components/ProjectFull.jsx";
-import Header from "../../components/Header.jsx";
-import Footer from "../../components/Footer.jsx";
 import Layout from '../../components/Layout.jsx';
 
 
@@ -17,16 +15,24 @@ export default function Post( {project, links} ) {
   const [isMobile, setIsMobile] = useState(false);
 
   useEffect( () => {
-  // isMobile = window.innerWidth <= 640;
-      setIsMobile( () => window.innerWidth <= 640)
+    setIsMobile( () => window.innerWidth <= 640)
   }, [])
 
   return <>
-    {/* <div className="wrapper flex flex-col justify-items-stretch h-full"> */}
+    <Head>
+        <title>AT Blog</title>
+        <meta name="viewport" content="initial-scale=1.0, width=device-width" />
+        <meta property="og:title" content="AT Blog" key="title" />
+        <meta name="description" content="Personal website with blog, resume and portfolio." />
+        <meta name="keywords" content="Frontend, developer, blog, artem, tarasenko, javascript, snippets, react, vercel, next, graphcms, web, dev, resume" />
+        <meta name="author" content="Artem Tarasenko" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <link rel="icon" href="/favicon.ico" type="image/x-icon" />
+                    <link rel="shortcut icon" href="/favicon.ico" type="image/x-icon" />
+    </Head>
     <Layout coverImage={project.files.url} toTop={!isMobile} backlink='/portfolio/' transparent={true} title="Portfolio" bg={false}>
         <ProjectFull project={project} links={links} isMobile={isMobile} />
     </Layout>
-    {/* </div> */}
    </>
 }
 

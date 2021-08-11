@@ -1,11 +1,9 @@
 import React, { useState, useEffect } from "react";
-//import '../styles/globals.css';
-
+import Head from 'next/head';
 import BlogLayout from "../../components/Blog/BlogLayout.jsx";
 import Layout from '../../components/Layout.jsx';
-// import { request, GraphQLClient, gql  } from 'graphql-request';
 import { ApolloClient, InMemoryCache, gql } from '@apollo/client';
-import { ContactsOutlined } from "@material-ui/icons";
+
 
 
 
@@ -74,6 +72,17 @@ function Index( {posts, intros} ) {
     });    
     
     return  <React.Fragment>
+                <Head>
+                  <title>AT Blog</title>
+                  <meta name="viewport" content="initial-scale=1.0, width=device-width" />
+                  <meta property="og:title" content="AT Blog" key="title" />
+                  <meta name="description" content="Personal website with blog, resume and portfolio." />
+                  <meta name="keywords" content="Frontend, developer, blog, artem, tarasenko, javascript, snippets, react, vercel, next, graphcms, web, dev, resume" />
+                  <meta name="author" content="Artem Tarasenko" />
+                  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+                  <link rel="icon" href="/favicon.ico" type="image/x-icon" />
+                    <link rel="shortcut icon" href="/favicon.ico" type="image/x-icon" />
+                </Head>
                 <Layout intro={intros[0]} padding={true} footerBackground={true} isMobile={isMobile} title="Blog" bg={true}>
                     {posts.length > 0 ? <BlogLayout source={sortedArray} category={"posts"} isMobile={isMobile} /> : <p>Loading...</p>}
                 </Layout>
