@@ -78,6 +78,7 @@ export async function getStaticProps() {
                 skills {
                   title
                   value
+                  img
                 }
                 pic {
                   url

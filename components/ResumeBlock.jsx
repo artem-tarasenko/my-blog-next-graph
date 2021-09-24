@@ -9,13 +9,8 @@ import PhoneAndroidIcon from '@material-ui/icons/PhoneAndroid';
 import PersonPinCircleIcon from '@material-ui/icons/PersonPinCircle';
 import AlternateEmailIcon from '@material-ui/icons/AlternateEmail';
 
-// import Rating from '@material-ui/lab/Rating';
-import LinearProgress from '@material-ui/core/LinearProgress';
-
-
 
 export default function ResumeBlock({resume, isMobile}) {
-
     const stylesHoverBlue = "hover:text-blue-500 transition ease-in-out duration-300"
 
     return <React.Fragment>
@@ -65,6 +60,22 @@ export default function ResumeBlock({resume, isMobile}) {
             </div>
 
             <div className="studies my-4">
+                <h2 className="border-b-2 border-gray-300 uppercase py-2 text-center lg:text-left">Skills</h2>
+                <div className="skills flex flex-wrap mt-4 lg:ml-8">
+                {
+                    resume.skills.map( skill => {
+                        return <>
+                            <div className="skill my-2 px-2 lg:mx-4 flex-shrink-0 w-1/2 lg:w-32 flex flex-col items-center">
+                                <img src={`/icons/${skill.img}.png`} alt={skill.title} className="object-contain flex-grow p-6 lg:p-0" />
+                                <p>{skill.title}</p>
+                            </div>
+                        </>
+                    })
+                }
+                </div>
+            </div>
+
+            <div className="studies my-4">
                 <h2 className="border-b-2 border-gray-300 uppercase py-2 text-center lg:text-left">Education</h2>
                 <div className="company flex flex-col mx-4 lg:ml-8">
                     {
@@ -74,22 +85,6 @@ export default function ResumeBlock({resume, isMobile}) {
                             </>
                         })
                     }
-                </div>
-            </div>
-
-            <div className="studies my-4">
-                <h2 className="border-b-2 border-gray-300 uppercase py-2 text-center lg:text-left">Skills</h2>
-                <div className="skills flex flex-wrap mt-4 lg:ml-8">
-                {
-                    resume.skills.map( skill => {
-                        return <>
-                            <div className="skill my-2 px-2 lg:mx-4 flex-shrink-0 w-1/2 lg:w-32">
-                                <p>{skill.title}</p>
-                                <LinearProgress variant="determinate" value={skill.value} />
-                            </div>
-                        </>
-                    })
-                }
                 </div>
             </div>
             
