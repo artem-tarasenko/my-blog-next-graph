@@ -8,7 +8,7 @@ import BackButton from "./BackButton/BackButton.jsx";
 import BackButtonStyles from "./BackButton/BackButton.module.css";
 
 
-import Image from 'next/image';
+// import Image from 'next/image';
 
 function Layout(props) {
 
