@@ -27,7 +27,7 @@ function ProjectFull( {project, links, isMobile} ) {
                         <div className={`${isMobile ? styles.postMobile : ''} ${styles.post} h-full px-4 lg:px-0 lg:mx-64 w-screen`}>
                             <h1 className="my-4">{project.title}</h1>
                             {parse(project.content.html)}
-                            <div className="flex flex-wrap lg:mx-4 justify-between lg:justify-start my-6 lg:my-0">
+                            <div className="flex flex-wrap justify-between lg:mx-4 lg:justify-start my-6 lg:my-0">
                                 {   project.tags.map( tag => <p className=" px-2 py-1 lg:mx-2 lg:px-4 lg:py-2 text-sm lg:text-base flex-wrap border">{tag}</p>)   }
                             </div>
                             <div className="links my-4 lg:my-8 relative lg:h-8 flex justify-between">
